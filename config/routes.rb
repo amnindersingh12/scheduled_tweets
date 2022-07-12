@@ -17,6 +17,10 @@ Rails.application.routes.draw do
   get "password", to: "passwords#edit"
   patch "password", to: "passwords#update"
 
+  # Password Reset page
+  get "password/reset", to: "password_resets#new"
+  post "password/reset", to: "password_resets#create"
+  
   # Home page
   root to: "main#index"
 
