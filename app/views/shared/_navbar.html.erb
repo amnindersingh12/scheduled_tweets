@@ -16,7 +16,8 @@
       <%#  Adding the login and signup into the navbar %>
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
         <% if Current.user %>
-          <%= Current.user.email %>
+        <%= Current.user.email %>
+          <%= link_to "Edit Password", password_path %>
           <%= button_to "Logout", logout_path, method: :delete%>
         <% else %>
           <%# button to login %>

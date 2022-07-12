@@ -12,7 +12,11 @@ Rails.application.routes.draw do
   # Sign in page
   get "sign_in", to: "sessions#new"
   post "sign_in", to: "sessions#create"
-  
+
+  # edit password page
+  get "password", to: "passwords#edit"
+  patch "password", to: "passwords#update"
+
   # Home page
   root to: "main#index"
 
