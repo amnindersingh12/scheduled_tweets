@@ -2,9 +2,34 @@ class PasswordResetsController < ApplicationController
     def new
     end
     def create
-      # haven't figured out how to get this to work yet
-      flash[:notice] = "Please check your email for instructions to reset your password."
-      redirect_to root_path
+
+      @user = User.find_by(email: params[:email])
+
+      if @user.present?
+        PasswordMailer.with(user: @user).reset.deliver_later
+
+      else
+      end
+      
+      redirect_to root_path, notice: "Instructions have been sent to your email."
     end
+    def edit
+      @user = User.find_signed!(params[:token], purpose: "password_reset")
+      rescue ActiveSupport::MessageVerifier::InvalidSignature
+      redirect_to sign_in_path, notice: "Password reset link has expired." if @user.nil?
+    end
+
+    def update
+      @user = User.find_signed!(params[:token], purpose: "password_reset")
+      if @user.update(password_params)
+        redirect_to sign_in_path, notice: "Password updated."
+      else
+        render :edit, status: :unprocessable_entity
+      end
     
+    end
+
+    def password_params
+      params.require(:user).permit(:password, :password_confirmation)
+    end
 end
