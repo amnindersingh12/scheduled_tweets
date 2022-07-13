@@ -1,0 +1,7 @@
+<h2>Yup</h2>
+<div>
+  <%# show all tweets %>
+  <% @tweets.each do |t| %>
+    <%= link_to t.body, tweet_path(t) %>
+  <% end %>
+</div>

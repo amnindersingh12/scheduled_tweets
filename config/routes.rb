@@ -1,7 +1,7 @@
 
 
 Rails.application.routes.draw do
-  
+ 
   #  About page
   get "about", to: "about#index" 
   
@@ -32,5 +32,11 @@ Rails.application.routes.draw do
   # Logout 
   delete "logout", to: "sessions#destroy"
 
+  # create a tweet page 
+  get "tweet/new", to: "tweets#new"
+  post "tweet/new", to: "tweets#create"
 
+  # show all tweets page
+  get "tweet/all", to: "tweets#index"
+  get "tweet/:id", to: "tweets#show", as: :tweet
 end
