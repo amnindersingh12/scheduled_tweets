@@ -39,4 +39,7 @@ Rails.application.routes.draw do
   # show all tweets page
   get "tweet/all", to: "tweets#index"
   get "tweet/:id", to: "tweets#show", as: :tweet
+
+  # delete tweet
+  delete "tweet/:id", to: "tweets#destroy"
 end

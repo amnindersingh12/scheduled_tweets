@@ -1,5 +1,7 @@
 class TweetsController < ApplicationController
     before_action :authenticate_user
+    rescue_from ActiveRecord::RecordNotFound, with: :help
+
 
     def authenticate_user
         if session[:user_id]
@@ -28,8 +30,7 @@ class TweetsController < ApplicationController
 
     def tweet_params
         params.require(:tweet).permit(:body)
-
-        
+      
         
     end
 
@@ -38,10 +39,17 @@ class TweetsController < ApplicationController
     end
 
     def show
-        @tweet = Tweet.find(params[:id])
+             @tweet = Tweet.find(params[:id]) if params[:id]
+    
     end
 
-    
+    def help
+        render plain: "4O4 Tweet Not Found !!"
+    end
 
-
+    def destroy
+        @tweet = Tweet.find(params[:id])
+        @tweet.destroy
+        redirect_to tweet_all_path, notice: "The Tweet was successfully destroyed."
+      end 
 end

@@ -1,6 +1,12 @@
-<h1> Displaying Tweets </h1>
+<h2>Displaying Tweets..</h2>
+<%= link_to 'Back', :back %>
 
-
-
-
-<%= @tweet.body %>
+<table class="table table-hover">
+  <thead class="thead-dark">
+  <th></th>
+  </thead>
+  <tbody>
+    <td> <%= @tweet.body %></td>
+      <td><%= link_to "Delete", tweet_path(@tweet.id), data: { "turbo-method": :delete }, confirm: "Are you sure?",  class:"btn btn-danger" %></td>
+  </tbody>
+</table>

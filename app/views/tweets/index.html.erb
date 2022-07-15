@@ -1,11 +1,20 @@
 <h2>Fetching Latest Tweets..</h2>
-<div>
-  <%# show all tweets %>
-  <% @tweets.each do |t| %>
-<div class="d-flex flex-column bd-highlight mb-3"> 
+<%= link_to 'Back', :back %>
 
-    <%= link_to t.body, tweet_path(t) , class:"p-2 bd-highlight"%>
-    <%= @current_user.username %>
-    </div>
-  <% end %>
-</div>
+<table class="table table-hover">
+  <thead class="thead-dark">
+  <th>Tweet</th>
+ <th>User ID</th>
+ <th>Tweet Id</th>
+
+  </thead>
+  <tbody>
+    <% @tweets.each do |t| %>
+      <tr>
+        <td>  <%= link_to t.body, tweet_path(t) , class:"p-2 bd-highlight"%>
+            <td><%= t.user_id %></td>
+             <td><%= t.id%></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
