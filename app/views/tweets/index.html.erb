@@ -1,7 +1,9 @@
-<h2>Yup</h2>
+<h2>Fetching Latest Tweets..</h2>
 <div>
   <%# show all tweets %>
   <% @tweets.each do |t| %>
-    <%= link_to t.body, tweet_path(t) %>
+<div class="d-flex flex-column bd-highlight mb-3"> 
+    <%= link_to t.body, tweet_path(t) , class:"p-2 bd-highlight"%>
+    </div>
   <% end %>
 </div>
