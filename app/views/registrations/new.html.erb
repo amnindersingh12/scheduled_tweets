@@ -6,6 +6,10 @@
         <%= msg %>
       <% end %>
     <% end %>
+     <div class="mb-3 ">
+      <%=form.label :username %>
+      <%= form.text_field :username, placeholder: "hellokiprosh.com", class: "form-control" %>
+    </div>
     <div class="mb-3 ">
       <%=form.label :email %>
       <%= form.text_field :email, placeholder: "hello@kiprosh.com", class: "form-control" %>

@@ -3,7 +3,9 @@
   <%# show all tweets %>
   <% @tweets.each do |t| %>
 <div class="d-flex flex-column bd-highlight mb-3"> 
+
     <%= link_to t.body, tweet_path(t) , class:"p-2 bd-highlight"%>
+    <%= @current_user.username %>
     </div>
   <% end %>
 </div>
