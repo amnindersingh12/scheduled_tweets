@@ -1,5 +1,5 @@
 <h2>Displaying Tweets..</h2>
-<%= link_to 'Back', :back %>
+<%# <%= link_to 'Back', :back %> 
 
 <table class="table table-hover">
   <thead class="thead-dark">
@@ -7,6 +7,6 @@
   </thead>
   <tbody>
     <td> <%= @tweet.body %></td>
-      <td><%= link_to "Delete", tweet_path(@tweet.id), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } ,  class:"btn btn-danger" %></td>
+      <td><%= button_to "Delete", tweet_path(@tweet.id), method: :delete ,  class:"btn btn-danger" %></td>
   </tbody>
 </table>

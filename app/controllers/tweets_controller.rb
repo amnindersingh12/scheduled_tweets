@@ -2,7 +2,7 @@ class TweetsController < ApplicationController
     
     before_action :authenticate_user
 
-    rescue_from ActiveRecord::RecordNotFound, with: :help
+    # rescue_from ActiveRecord::RecordNotFound, with: :help
 
 
     def authenticate_user
@@ -41,13 +41,13 @@ class TweetsController < ApplicationController
     end
 
     def show
-             @tweet = Tweet.find(params[:id]) if params[:id]
+        @tweet = Tweet.find(params[:id]) if params[:id]
     
     end
 
-    def help
-        render plain: "4O4 Tweet Not Found !!"
-    end
+    # def help
+    #     render plain: "4O4 Tweet Not Found !!"
+    # end
 
     def destroy
         @tweet = Tweet.find(params[:id])
