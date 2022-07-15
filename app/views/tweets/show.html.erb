@@ -7,6 +7,6 @@
   </thead>
   <tbody>
     <td> <%= @tweet.body %></td>
-      <td><%= link_to "Delete", tweet_path(@tweet.id), data: { "turbo-method": :delete }, confirm: "Are you sure?",  class:"btn btn-danger" %></td>
+      <td><%= link_to "Delete", tweet_path(@tweet.id), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } ,  class:"btn btn-danger" %></td>
   </tbody>
 </table>

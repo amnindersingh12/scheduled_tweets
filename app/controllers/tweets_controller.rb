@@ -1,5 +1,7 @@
 class TweetsController < ApplicationController
+    
     before_action :authenticate_user
+
     rescue_from ActiveRecord::RecordNotFound, with: :help
 
 

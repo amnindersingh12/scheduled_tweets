@@ -1,12 +1,10 @@
 <div class="d-flex align-items-center justify-content-center flex-column ">
   <h1>Welcome to Scheduled Tweets </h1>
-  </div>
-    <div class="mt-3
-    d-flex align-items-center justify-content-center flex-column ">
-      <%= link_to "Tweet Form" , tweet_new_path, class: "flex-shrink-0 btn btn-primary" %>
-         <%# <%= link_to "All Tweets" , tweet_all_path, class: "flex-shrink-0 btn btn-primary" %> 
 </div>
-    <%# show all tweets %>
-    <div class="mt-3 d-flex align-items-center justify-content-center flex-column ">
-      <%= link_to "All Tweets", tweet_all_path, class: "align-items-center justify-content-center btn btn-primary" %>
-    </div>
+<div class="mt-3
+    d-flex align-items-center justify-content-center flex-column ">
+  <%= render  template: "tweets/new"%>
+</div>
+<div class="mt-3 d-flex align-items-center justify-content-center flex-column ">
+  <%= link_to "All Tweets", tweet_all_path, class: "align-items-center justify-content-center btn btn-primary" %>
+</div>
