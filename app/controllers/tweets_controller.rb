@@ -1,5 +1,6 @@
 class TweetsController < ApplicationController
-    
+    include ActionView::Helpers::DateHelper
+
     before_action :authenticate_user
 
     # rescue_from ActiveRecord::RecordNotFound, with: :help
@@ -30,28 +31,28 @@ class TweetsController < ApplicationController
        
     end
 
-    def tweet_params
-        params.require(:tweet).permit(:body)
-      
-        
-    end
+    
 
     def index
-        @tweets = Tweet.all
+        @tweets = Tweet.all.order(created_at: :desc)
     end
 
     def show
         @tweet = Tweet.find(params[:id]) if params[:id]
+        @date_time = time_ago_in_words(@tweet.created_at)
+
     
     end
 
-    # def help
-    #     render plain: "4O4 Tweet Not Found !!"
-    # end
 
     def destroy
         @tweet = Tweet.find(params[:id])
         @tweet.destroy
         redirect_to tweet_all_path, notice: "The Tweet was successfully destroyed."
       end 
+
+    private
+    def tweet_params
+        params.permit(:body)
+    end
 end

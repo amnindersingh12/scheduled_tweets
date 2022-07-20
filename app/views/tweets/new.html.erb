@@ -1,11 +1,14 @@
-<div class="container center_div">
+
+
+
   <h1> Tweet Form </h1>
   <%= form_with model: @tweet, url: tweet_new_path, method: :post do |form| %>
-    <div class="mb-3">
+    
       <%= form.text_field :body, placeholder: "What's on your mind?" , class: "form-control form-control-lg"%>
-    </div>
-    <div class="mb-3">
+   
+   
       <%= form.submit "Tweet", class: "btn btn-primary" %>
-    </div>
+    
   <% end %>
-</div>
+
+
