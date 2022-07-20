@@ -1,18 +1,8 @@
 class TweetsController < ApplicationController
     include ActionView::Helpers::DateHelper
 
-    before_action :authenticate_user
-
-    # rescue_from ActiveRecord::RecordNotFound, with: :help
-
-
-    def authenticate_user
-        if session[:user_id]
-            @current_user = User.find(session[:user_id])
-        else
-            redirect_to sign_in_path, notice: "You must be logged in to do that!"
-        end
-    end
+    before_action :authenticate_user!
+  
 
     def new
         @tweet = Tweet.new
@@ -25,8 +15,7 @@ class TweetsController < ApplicationController
         if @tweet.save
             redirect_to root_path, notice: "Tweet created!"
         else
-        
-            render :new, status: :unprocessable_entity
+            redirect_to root_path, status: :unprocessable_entity
         end
        
     end
