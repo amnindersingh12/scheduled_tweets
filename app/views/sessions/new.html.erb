@@ -14,7 +14,12 @@
         <div class="mb-3">
           <%= form.label :password, 'Password' %>
           <%= form.password_field :password,placeholder: "password", class: "form-control" %>
+        </div>
+        <div class="mb-6">
           <%= link_to  "Forgot Password", password_reset_path %>
+          <div class="mb-">
+            <%= link_to "Sign Up", sign_up_path%>
+          </div>
         </div>
         <div class="mb-3">
           <%= form.submit 'Sign In',class: "px-6 py-2 bg-sky-400 text-white font-semibold rounded-full text-center cursor-pointer inline-block hover:bg-sky-500 transition ease-in-out duration-300" %>

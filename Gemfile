@@ -6,7 +6,8 @@ ruby "3.0.4"
 
 gem 'htmlbeautifier'
 
-
+# devise (authentication)
+gem 'devise'
 
 gem "rdoc"
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"

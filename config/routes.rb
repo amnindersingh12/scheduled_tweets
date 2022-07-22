@@ -1,6 +1,7 @@
 
 
 Rails.application.routes.draw do
+  devise_for :users
  
   #  About page
   get "about", to: "about#index" 
@@ -42,4 +43,7 @@ Rails.application.routes.draw do
 
   # delete tweet
   delete "tweet/:id", to: "tweets#destroy"
+
+  # add profile
+  resources :profiles
 end

@@ -20,7 +20,7 @@ class TweetsController < ApplicationController
        
     end
 
-    
+
 
     def index
         @tweets = Tweet.all.order(created_at: :desc)
