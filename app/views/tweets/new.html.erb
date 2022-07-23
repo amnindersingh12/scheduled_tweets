@@ -1,0 +1,5 @@
+<h1> Tweet Form </h1>
+<%= form_with model: @tweet, url: tweet_new_path, method: :post do |form| %>
+  <%= form.text_field :body, placeholder: "What's on your mind?" , class: "form-control form-control-lg"%>
+  <%= form.submit "Tweet",class:"px-4 py-2 bg-sky-400 text-white font-semibold rounded-full text-center cursor-pointer hover:bg-sky-500 transition ease-in-out duration-300" %>
+<% end %>
