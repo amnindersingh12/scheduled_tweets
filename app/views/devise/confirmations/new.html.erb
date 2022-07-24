@@ -6,7 +6,7 @@
         <%= link_to "Back", root_path, class: "text-gray-600 underline flex items-center hover:text-gray-700 hover:no-underline" %>
       </div>
       <h2 class="pt-6 font-sans text-3xl font-black leading-tight mb-3"> Resend confirmation instructions</h2>
-      <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
+      <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name),data: { turbo: false } ,html: { method: :post }) do |f| %>
         <%= render "devise/shared/error_messages", resource: resource %>
         <div class="mb-6">
           <%= f.label :email %><br />

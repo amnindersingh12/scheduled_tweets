@@ -6,17 +6,17 @@
         <%= link_to "Back", root_path, class: "text-gray-600 underline flex items-center hover:text-gray-700 hover:no-underline" %>
       </div>
       <h2 class="pt-6 font-sans text-3xl font-black leading-tight mb-3"> Forgot your password?</h2>
-      <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+      <%= form_for(resource, as: resource_name, url: password_path(resource_name), data: { turbo: false }, html: { method: :post }) do |f| %>
         <%= render "devise/shared/error_messages", resource: resource %>
         <div class="mb-6 mt-6">
           <%= f.label :email %><br />
-          <%= f.email_field :email, autofocus: true, autocomplete: "email" ,class:"form-control" %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
         </div>
         <div class="actions">
-          <%= f.submit "Send me reset password instructions",class: "px-6 py-2 bg-sky-400 text-white font-semibold rounded-full text-center cursor-pointer inline-block hover:bg-sky-500 transition ease-in-out duration-300" %>
+          <%= f.submit "Reset Password", class: "px-6 py-2 bg-sky-400 text-white font-semibold rounded-full text-center cursor-pointer inline-block hover:bg-sky-500 transition ease-in-out duration-300" %>
         </div>
       <% end %>
-      <%# render "devise/shared/links" %>
+      <% # render "devise/shared/links" %>
     </div>
   </div>
 </div>
