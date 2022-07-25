@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get "about", to: "about#index"
 
   # Home page
-  root to: "main#index"
+  root to: "tweets#index"
 
   # create a tweet page
   get "tweet/new", to: "tweets#new"

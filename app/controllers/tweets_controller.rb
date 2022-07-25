@@ -3,8 +3,9 @@ class TweetsController < ApplicationController
 
   before_action :authenticate_user!
 
-  def new
+  def index
     @tweet = Tweet.new
+    @tweets = Tweet.all.order(created_at: :desc)
   end
 
   def create
@@ -15,10 +16,6 @@ class TweetsController < ApplicationController
     else
       redirect_to root_path, alert: "Tweet not created!"
     end
-  end
-
-  def index
-    @tweets = Tweet.all
   end
 
   def show

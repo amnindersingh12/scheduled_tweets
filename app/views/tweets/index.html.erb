@@ -1,20 +1,6 @@
-<h2>Fetching Latest Tweets..</h2>
-<table class="table table-hover">
-  <thead class="thead-dark">
-    <th>Tweet</th>
-    <th>Tweet Id</th>
-    <th>Created At</th>
-    <th>Username</th>
-  </thead>
-  <tbody>
-    <% @tweets.each do |t| %>
-      <tr>
-        <td>  <%= link_to t.body, tweet_path(t), class: "p-2 bd-highlight" %>
-           <td><%= t.id %></td>
-          <td><%= t.created_at %></td>
-          <td><%= t.user.username %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-<%= link_to "Back to Home", root_path, class: "px-4 py-2 bg-sky-400 text-white font-semibold rounded-full text-center cursor-pointer hover:bg-sky-500 transition ease-in-out duration-300" %>
+<div class="mb-8">
+  <%= render "form" %>
+</div>
+<% @tweets.each do |t| %>
+  <%= render partial: "tweets/tweet", locals: { tweet: t } %>
+<% end %>

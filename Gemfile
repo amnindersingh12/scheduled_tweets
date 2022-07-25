@@ -8,6 +8,8 @@ gem "htmlbeautifier"
 
 gem "rufo"
 
+gem 'pry-rails'
+
 # devise (authentication)
 gem "devise"
 
