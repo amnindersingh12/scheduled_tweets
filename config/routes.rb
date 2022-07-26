@@ -20,4 +20,11 @@ Rails.application.routes.draw do
 
   # add profile
   resources :profiles
+
+  # add likes
+  resources :likes
+
+  # add followers
+  post "profiles/follow", to: "profiles#follow"
+  delete "profiles/unfollow", to: "profiles#unfollow"
 end

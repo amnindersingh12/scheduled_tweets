@@ -35,9 +35,10 @@
                 <% end %>
               </li>
               <li >
-                <div class="flex items-stretch">
+                <div class="flex ">
                   <div class="pr-2">
-                    <%= image_tag current_user.profile_image, class: " w-14 h-14 rounded-full ring-2 ring-gray-300 dark:ring-gray-500 " %></div>
+                    <%= image_tag current_user.profile_image, class: " w-14 h-14 rounded-full ring-2 ring-gray-300 dark:ring-gray-500 " %>
+                  </div>
                   <div class="pl-1 ">
                     <p><%= current_user.first_name %></p>
                     <p>@<%= current_user.username %></p>
@@ -50,7 +51,6 @@
         <div class="lg:col-span-6 border-x">
           <h1 class="sticky top-0 z-50 ml-3">Home</h1>
           <%= yield %>
-
         </div>
         <div class="lg:col-span-4 pl-6 pt-6">
           <div class="bg-gray-50 w-full min-h-[150px] rounded-lg p-6 mb-6">Sidebar stuff</div>

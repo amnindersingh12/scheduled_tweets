@@ -6,11 +6,25 @@
     <div class="flex-1">
       <div>
         <h1 class="font-bold text-3xl"><%= @profile.first_name %></h1>
-        <%= "@" + @profile.username %>
+        <%= @profile.email %>
       </div>
     </div>
-    <div>
-      <%= link_to "Edit profile", edit_user_registration_path, class: "inline-flex justify-center items-center px-5 py-2 rounded-full border ring-4 focus:ring-sky-50 ring-transparent hover:ring-sky-50 hover:border-gray-300" if current_user %>
+    <% if @profile == current_user %>
+      <div>
+        <%= link_to "Edit profile", edit_user_registration_path, class: "inline-flex justify-center items-center px-5 py-2 rounded-full border ring-4 focus:ring-sky-50 ring-transparent hover:ring-sky-50 hover:border-gray-300" %>
+      </div>
+    <% elsif current_user %>
+      <div>
+        <%= render "profiles/follow_button" %>
+      </div>
+    <% end %>
+  </div>
+  <div class="p-6">
+    <div class="flex items-center  space-x-8">
+      <%= render "profiles/follower_count" %>
+      <span>
+        <%= @profile.followees.count %> Following
+      </span>
     </div>
   </div>
   <ul class="list-none divide-y -mx-6 mt-10">
