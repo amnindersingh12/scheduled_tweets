@@ -10,16 +10,17 @@
   <div class="flex items-start justify-between space-x-3">
     <%= profile_image(@tweet.user) %>
     <div class="flex-1">
-      <h1 class="font-bold">
-        <%= link_to @tweet.user.first_name, profile_path(@tweet.user) %>
-      </h1>
+      <p class="font-bold">
+        <%= link_to @tweet.user.first_name, profile_path(@tweet.user) %>.
+        <%= @tweet.created_at.strftime("%b %d") %>
+      </p>
       <p class="text-gray-700"><%= "@" + @tweet.user.username %></p>
     </div>
   </div>
   <div class="prose prose-2xl text-gray-900 my-3">
     <% if @tweet.tweet_id? %>
       <%= @tweet.tweet.body %>
-    <% else%>
+    <% else %>
       <%= @tweet.body %>
     <% end %>
   </div>

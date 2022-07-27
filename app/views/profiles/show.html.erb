@@ -15,7 +15,11 @@
       </div>
     <% elsif current_user %>
       <div>
-        <%= render "profiles/follow_button" %>
+        <% if following?(@profile) %>
+          <%= button_to "Unfollow", profiles_path(id: @profile.id), method: :delete, class: "inline-flex justify-center items-center px-5 py-2 rounded-full border ring-4 focus:ring-sky-50 ring-transparent hover:ring-sky-50 hover:border-gray-300" %>
+        <% else %>
+          <%= button_to "Follow", profiles_follow_path(id: @profile.id), method: :post, class: "inline-flex justify-center items-center px-5 py-2 rounded-full border ring-4 focus:ring-sky-50 ring-transparent hover:ring-sky-50 hover:border-gray-300" %>
+        <% end %>
       </div>
     <% end %>
   </div>
@@ -26,14 +30,13 @@
         <%= link_to "Follower", follower_url %>
       </span>
       <span>
-
         <%= @profile.followees.count %>
-        <%= link_to "Following" , follower_url %>
+        <%= link_to "Following", follower_url %>
       </span>
     </div>
   </div>
   <ul class="list-none divide-y -mx-6 mt-10">
-  <p class="px-6 py-3 border-b">Tweets</p>
+    <p class="px-6 py-3 border-b">Tweets</p>
     <%= render collection: @profile.tweets, partial: "tweets/tweet" %>
   </ul>
 </div>

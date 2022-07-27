@@ -4,7 +4,12 @@
       <%= profile_image(tweet.user) %>
     </div>
     <div class="flex-1">
-      <p class="font-bold"><%= link_to tweet.user.first_name, profile_path(tweet.user), class: "hover:underline", data: { turbo: false } %></p>
+      <p class="font-bold">
+        <%= tweet.user.first_name %>
+        @<%= link_to tweet.user.username, profile_path(tweet.user), class: "hover:underline",
+                                                                    data: { turbo: false } %>.
+        <%= tweet.created_at.strftime("%b %d") %>
+      </p>
       <%= link_to tweet, data: { turbo: false } do %>
         <div class="prose prose-lg"><%= tweet.body %></div>
       <% end %>

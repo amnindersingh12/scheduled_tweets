@@ -11,16 +11,41 @@
     <p class="text-blue-500 hover:text-blue-800 mb-6" >Follower</p>
     <% @profile.followers.each do |x| %>
       <div class="mb-6">
-        <%= link_to x.first_name, profile_path(x.id) %>
+        <div class="flex ">
+          <div class="pr-2">
+            <%= image_tag x.profile_image, class: " w-14 h-14 rounded-full ring-2 ring-gray-300 dark:ring-gray-500 " %>
+          </div>
+          <div class="pl-1 ">
+            <p><%= link_to x.first_name, profile_path(x.id) %></p>
+            <p>@<%= x.username %></p>
+            <% if following?(x) %>
+              <%= button_to "Unfollow", profiles_path(id: x.id), method: :delete, class: "inline-flex justify-center items-center px-5 py-2 rounded-full border ring-4 focus:ring-sky-50 ring-transparent hover:ring-sky-50 hover:border-gray-300" %>
+            <% else %>
+              <%= button_to "Follow", profiles_follow_path(id: x.id), method: :post, class: "inline-flex justify-center items-center px-5 py-2 rounded-full border ring-4 focus:ring-sky-50 ring-transparent hover:ring-sky-50 hover:border-gray-300" %>
+            <% end %>
+          </div>
+        </div>
       </div>
     <% end %>
   </div>
   <div class="flex-1 h-16 ">
     <p class="text-blue-500 hover:text-blue-800 mb-6" >Following</p>
-    <% current_user.followees.each do |x| %>
+    <% @profile.followees.each do |x| %>
       <div class="mb-6">
-        <% # profile_path(x.id) => "/profiles/2" %>
-        <%= link_to x.first_name, profile_path(x.id) %>
+        <div class="flex ">
+          <div class="pr-2">
+            <%= image_tag x.profile_image, class: " w-14 h-14 rounded-full ring-2 ring-gray-300 dark:ring-gray-500 " %>
+          </div>
+          <div class="pl-1 ">
+            <p><%= link_to x.first_name, profile_path(x.id) %></p>
+            <p>@<%= x.username %></p>
+            <% if following?(x) %>
+              <%= button_to "Unfollow", profiles_path(id: x.id), method: :delete, class: "inline-flex justify-center items-center px-5 py-2 rounded-full border ring-4 focus:ring-sky-50 ring-transparent hover:ring-sky-50 hover:border-gray-300" %>
+            <% else %>
+              <%= button_to "Follow", profiles_follow_path(id: x.id), method: :post, class: "inline-flex justify-center items-center px-5 py-2 rounded-full border ring-4 focus:ring-sky-50 ring-transparent hover:ring-sky-50 hover:border-gray-300" %>
+            <% end %>
+          </div>
+        </div>
       </div>
     <% end %>
   </div>
