@@ -1,9 +1,8 @@
 class ProfilesController < ApplicationController
   include ProfileHelper
-  #before_action :set_profile
+  before_action :set_profile
 
   def show
-    @profile = User.find(params[:id])
   end
 
   def follow
@@ -15,11 +14,9 @@ class ProfilesController < ApplicationController
   end
 
   def follower
-
   end
 
-  def following
+  def set_profile
+    @profile = User.find(params[:id])
   end
-
- 
 end

@@ -1,9 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  #  About page
-  get "about", to: "about#index"
-
   # Home page
   root to: "tweets#index"
 
