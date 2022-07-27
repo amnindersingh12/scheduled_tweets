@@ -26,5 +26,8 @@ Rails.application.routes.draw do
 
   # add followers
   post "profiles/follow", to: "profiles#follow"
-  delete "profiles/unfollow", to: "profiles#unfollow"
+  delete "profiles/", to: "profiles#unfollow"
+
+  # list follower and following
+  get "profiles/:id/follower", to: "profiles#follower", as: :follower
 end

@@ -1,7 +1,9 @@
 class ProfilesController < ApplicationController
-  before_action :set_profile
+  include ProfileHelper
+  #before_action :set_profile
 
   def show
+    @profile = User.find(params[:id])
   end
 
   def follow
@@ -12,7 +14,12 @@ class ProfilesController < ApplicationController
     current_user.followed_users.where(follower_id: current_user.id, followee_id: @profile.id).destroy_all
   end
 
-  def set_profile
-    @profile = User.find(params[:id])
+  def follower
+
   end
+
+  def following
+  end
+
+ 
 end

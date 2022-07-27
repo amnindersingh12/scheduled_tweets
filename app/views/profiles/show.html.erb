@@ -21,9 +21,14 @@
   </div>
   <div class="p-6">
     <div class="flex items-center  space-x-8">
-      <%= render "profiles/follower_count" %>
       <span>
-        <%= @profile.followees.count %> Following
+        <%= @profile.followers.count %>
+        <%= link_to "Follower", follower_url %>
+      </span>
+      <span>
+
+        <%= @profile.followees.count %>
+        <%= link_to "Following" , follower_url %>
       </span>
     </div>
   </div>
