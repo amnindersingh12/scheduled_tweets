@@ -48,7 +48,7 @@
         </div>
       <% end %>
       <h3>Cancel my account</h3>
-      <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "mb-6 bg-gray-500 text-white p-2 rounded text-sm w-auto" %></p>
+      <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name),  method: :delete,form: { data: { turbo_confirm: "Are you sure?" } }, class: "mb-6 bg-gray-500 text-white p-2 rounded text-sm w-auto" %></p>
       <%= link_to "Back", :back, class: " bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-r" %>
       <% # render "devise/shared/links" %>
     </div>
