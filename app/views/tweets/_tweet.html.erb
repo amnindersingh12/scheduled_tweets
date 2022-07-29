@@ -1,4 +1,4 @@
-<div class="px-6 py-3 border-b" id="<%= dom_id(tweet) %>">
+<div class="px-6 py-3 border-b" id="tweet">
   <div class="flex space-x-3 items-start">
     <div class="flex-shrink-0">
       <%= profile_image(tweet.user) %>
@@ -6,12 +6,11 @@
     <div class="flex-1">
       <p class="font-bold">
         <%= tweet.user.first_name %>
-        @<%= link_to tweet.user.username, profile_path(tweet.user), class: "hover:underline",
-                                                                    data: { turbo: false } %>.
+        @<%= link_to tweet.user.username, profile_path(tweet.user), class: "hover:underline" %>.
         <%= tweet.created_at.strftime("%b %d") %>
       </p>
-      <%= link_to tweet, data: { turbo: false } do %>
-        <div class="prose prose-lg"><%= tweet.body %></div>
+      <%= link_to tweet do %>
+        <%= tweet.body %>
       <% end %>
       <%= render "tweets/controls", tweet: tweet %>
     </div>

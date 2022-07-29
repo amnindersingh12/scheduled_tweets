@@ -1,4 +1,4 @@
-<%= form_with model: [tweet, @comment], method: :post, data: { turbo: false } do |form| %>
+<%= form_with model: [tweet, @comment], method: :post do |form| %>
   <p class="pt-3">Replying to <%= link_to tweet.user.first_name, profile_path(tweet.user), class: "text-sky-500 hover:text-sky-600" %></p>
   <div class="flex items-start justify-between space-x-3 py-6 border-b">
     <%= profile_image(current_user) %>

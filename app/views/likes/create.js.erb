@@ -1,0 +1,7 @@
+$(@like).each(function (like) {
+  $.ajax({
+    url: "/likes/" + like.id,
+    type: "PUT",
+    data: { like: { liked: like.liked } }
+  });
+});

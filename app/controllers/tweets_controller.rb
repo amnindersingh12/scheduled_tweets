@@ -11,10 +11,12 @@ class TweetsController < ApplicationController
   def create
     @tweet = Tweet.new(tweet_params)
     @tweet.user_id = current_user.id
-    if @tweet.save
-      redirect_to tweets_path, notice: "Tweet created!"
-    else
-      redirect_to root_path, alert: "Tweet not created!"
+    respond_to do |format|
+      if @tweet.save
+        format.html { redirect_to tweets_path, notice: "Tweet created!" }
+      else
+        format.html { redirect_to root_path, notice: "Tweet not created!, Please see the logs:#{@tweet.errors.full_messages}" }
+      end
     end
   end
 
@@ -26,15 +28,17 @@ class TweetsController < ApplicationController
   end
 
   def destroy
-    if current_user.id == Tweet.find(params[:id]).user_id
-      Tweet.find(params[:id]).destroy
-      redirect_to tweets_path, notice: "Tweet deleted!"
-    else
-      redirect_to tweets_path, alert: "You are not authorized to delete this tweet!"
+    respond_to do |format|
+      if current_user.id == Tweet.find(params[:id]).user_id
+        Tweet.find(params[:id]).destroy
+        format.html { redirect_to tweets_path, notice: "Tweet deleted!" }
+      else
+        format.html { redirect_to tweets_path, alert: "You are not authorized to delete this tweet!" }
+      end
     end
   end
 
   def tweet_params
-    params.require(:tweet).permit(:body,:tweet_id)
+    params.require(:tweet).permit(:body, :tweet_id)
   end
 end

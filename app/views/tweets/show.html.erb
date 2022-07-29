@@ -21,7 +21,9 @@
     <% if @tweet.tweet_id? %>
       <%= @tweet.tweet.body %>
     <% else %>
-      <%= @tweet.body %>
+      <p class="overflow-auto">
+        <%= @tweet.body %>
+      </p>
     <% end %>
   </div>
   <ul class="py-3 border-t text-gray-700 flex space-x-4 text-sm">
@@ -42,6 +44,5 @@
   <% end %>
   <% @comments.each do |c| %>
     <%= render "comments/comment", comment: c %>
-  <%end%>
+  <% end %>
 </div>
-

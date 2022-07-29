@@ -1,0 +1,11 @@
+$(@follow = $('#follow')).on('click', function(e) {
+  e.preventDefault();
+  $.ajax({
+    url: $(this).attr('href'),
+    method: 'POST',
+    dataType: 'json',
+    success: function(data) {
+      $('#follow').replaceWith(data.follow_button);
+    }
+  });
+});

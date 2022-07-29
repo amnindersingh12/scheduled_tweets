@@ -4,18 +4,18 @@ class CommentsController < ApplicationController
 
   def create
     @comment = @tweet.comments.new(comment_params.merge(user: current_user))
-
-    if @comment.save
-      redirect_to tweets_path, notice: "Commented"
-    else
-      redirect_to tweet_path, alert: "Reply could not be created"
+    respond_to do |format|
+      @comment.save
+      format.html { redirect_to @tweet, notice: "Commented!" }
     end
   end
 
   def destroy
     @comment = @tweet.comments.find(params[:id])
-    @comment.destroy
-    redirect_to tweets_path, notice: "Comment Deleted!"
+    respond_to do |format|
+      @comment.destroy
+      format.html { redirect_to @tweet, notice: "Comment Deleted!" }
+    end
   end
 
   def comment_params

@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   root to: "tweets#index"
 
   resources :tweets, except: [:edit, :update] do
-    resources :comments, only: [:create, :destroy]
+    resources :comments
   end
 
   # create a tweet page

@@ -6,7 +6,7 @@
         <%= link_to "Back", root_path, class: "text-gray-600 underline flex items-center hover:text-gray-700 hover:no-underline" %>
       </div>
       <h2 class="pt-6 font-sans text-3xl font-black leading-tight mb-3"> Log In </h2>
-      <%= form_for(resource, as: resource_name, url: session_path(resource_name), data: { turbo: false }) do |form| %>
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |form| %>
         <div class="mb-3">
           <%= form.label :email, "Email" %>
           <%= form.text_field :email, placeholder: "hello@kiprosh.com", class: "form-control" %>
