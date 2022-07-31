@@ -6,16 +6,14 @@ class LikesController < ApplicationController
       @like = Like.find_by(likeable_id: @likeable.id, user: current_user)
       @like.destroy
       respond_to do |format|
-        format.html { redirect_back(fallback_location: root_path)}
-        format.js
+        format.html { redirect_back(fallback_location: root_path) }
       end
     else
       @like = @likeable.likes.new
       @like.user = current_user
       @like.save
       respond_to do |format|
-        format.html{ redirect_back(fallback_location: root_path)}
-        format.js
+        format.html { redirect_back(fallback_location: root_path) }
       end
     end
   end
