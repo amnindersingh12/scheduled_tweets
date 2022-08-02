@@ -20,6 +20,7 @@ class ProfilesController < ApplicationController
   end
 
   def follower
+    @followers = @profile.followers
   end
 
   def set_profile

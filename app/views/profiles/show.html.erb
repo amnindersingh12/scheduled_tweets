@@ -14,25 +14,28 @@
         <%= link_to "Edit profile", edit_user_registration_path, class: "inline-flex justify-center items-center px-5 py-2 rounded-full border ring-4 focus:ring-sky-50 ring-transparent hover:ring-sky-50 hover:border-gray-300" %>
       </div>
     <% elsif current_user %>
-      <div>
-        <% if following?(@profile) %>
-          <%= button_to "Unfollow", profiles_path(id: @profile.id), method: :delete, class: "inline-flex justify-center items-center px-5 py-2 rounded-full border ring-4 focus:ring-sky-50 ring-transparent hover:ring-sky-50 hover:border-gray-300", remote: true %>
-        <% else %>
-          <%= button_to "Follow", profiles_follow_path(id: @profile.id), method: :post, class: "inline-flex justify-center items-center px-5 py-2 rounded-full border ring-4 focus:ring-sky-50 ring-transparent hover:ring-sky-50 hover:border-gray-300", remote: true %>
-        <% end %>
+        <div id='f_id'>
+          <% if following?(@profile) %>
+            <%= button_to "Unfollow", profiles_path(id: @profile.id), method: :delete, class: "inline-flex justify-center items-center px-5 py-2 rounded-full border ring-4 focus:ring-sky-50 ring-transparent hover:ring-sky-50 hover:border-gray-300", remote: true %>
+          <% else %>
+            <%= button_to "Follow", profiles_follow_path(id: @profile.id), method: :post, class: "inline-flex justify-center items-center px-5 py-2 rounded-full border ring-4 focus:ring-sky-50 ring-transparent hover:ring-sky-50 hover:border-gray-300", remote: true %>
+          <% end %>
+        
       </div>
+
+
     <% end %>
   </div>
   <div class="p-6">
     <div class="flex items-center  space-x-8">
-      <span>
+      <span id="followers_id">
         <%= @profile.followers.count %>
-        <%= link_to "Follower", follower_url %>
       </span>
-      <span>
+      <%= link_to "Follower", follower_url %>
+      <span id="followees_id">
         <%= @profile.followees.count %>
-        <%= link_to "Following", follower_url %>
       </span>
+      <%= link_to "Following", follower_url %>
     </div>
   </div>
   <ul class="list-none divide-y -mx-6 mt-10">
