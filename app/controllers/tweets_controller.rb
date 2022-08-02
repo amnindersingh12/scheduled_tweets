@@ -31,10 +31,23 @@ class TweetsController < ApplicationController
     respond_to do |format|
       if current_user.id == Tweet.find(params[:id]).user_id
         Tweet.find(params[:id]).destroy
-        format.html { redirect_to tweets_path, notice: "Tweet deleted!" }
+        format.js { }
       else
-        format.html { redirect_to tweets_path, alert: "You are not authorized to delete this tweet!" }
+        
+        format.js { }
       end
+    end
+  end
+
+  def retweet
+    @tweet = Tweet.find(params[:id])
+    @retweet = current_user.tweets.new(tweet_id: @tweet.id)
+    @retweet.body = "#{@tweet.body}"
+    @retweet.save
+
+    respond_to do |format|
+
+      format.js { }
     end
   end
 

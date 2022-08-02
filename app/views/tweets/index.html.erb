@@ -3,5 +3,5 @@
   <%= render "form" %>
 </div>
 <% @tweets.each do |t| %>
-  <%= render partial: "tweets/tweet", locals: { tweet: t } %>
+  <%= render partial: "tweets/#{t.tweet_type.parameterize}", locals: { tweet: t } %>
 <% end %>

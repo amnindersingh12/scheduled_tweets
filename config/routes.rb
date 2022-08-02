@@ -6,6 +6,9 @@ Rails.application.routes.draw do
 
   resources :tweets, except: [:edit, :update] do
     resources :comments
+    member do
+      post :retweet
+    end
   end
 
   # create a tweet page

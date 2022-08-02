@@ -1,0 +1,17 @@
+
+<div class="px-6 py-3 border-b", id="retweet_<%=@tweet.id%>">
+  <div class="flex items-center mb-3 space-x-2">
+    <i class="fa-lg fa-retweet"></i>
+    <p class="text-sm font-medium">Retweeted by <%= "@" + tweet.user.username %></p>
+  </div>
+  <div class="flex space-x-3 items-start">
+    <div class="flex-shrink-0">
+      <%= profile_image(tweet.user) %>
+    </div>
+    <div class="flex-1">
+      <p class="font-bold"><%= link_to tweet.user.first_name, profile_path(tweet.user), class: "hover:underline" %></p>
+      <%= tweet.body %>
+      <%= render "tweets/controls", tweet: tweet %>
+    </div>
+  </div>
+</div>
