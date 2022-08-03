@@ -4,9 +4,9 @@ class CommentsController < ApplicationController
 
   def create
     @comment = @tweet.comments.new(comment_params.merge(user: current_user))
+    @comment.save
     respond_to do |format|
-      @comment.save
-      format.html { redirect_to @tweet, notice: "Commented!" }
+      format.js {}
     end
   end
 
@@ -14,7 +14,7 @@ class CommentsController < ApplicationController
     @comment = @tweet.comments.find(params[:id])
     respond_to do |format|
       @comment.destroy
-      format.html { redirect_to @tweet, notice: "Comment Deleted!" }
+      format.js {}
     end
   end
 

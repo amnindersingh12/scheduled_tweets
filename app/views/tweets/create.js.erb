@@ -1,0 +1,2 @@
+$('#tweets').prepend("<%= escape_javascript(render partial: "tweets/tweet", locals: { tweet: @tweet }) %>");
+$('#tweet_body').val('');

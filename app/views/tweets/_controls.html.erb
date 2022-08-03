@@ -19,12 +19,14 @@
       <div class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-green-50">
         <i class="fa-lg fa-retweet"></i>
       </div>
-      <span class="group-hover:text-green-500 text-gray-500"><%= Tweet.where(tweet_id: tweet).count %></span>
+      <span class="group-hover:text-green-500 text-gray-500", id="<%= tweet.id %>_r_count">
+        <%= Tweet.where(tweet_id: tweet).count %>
+      </span>
     <% end %>
   </li>
   <% if user_signed_in? && current_user == tweet.user %>
     <li>
-      <%= button_to tweet_path(tweet), method: :delete, remote: true, class: "text-gray-500 space-x-2 group flex items-center justify-center" do  %>
+      <%= button_to tweet_path(tweet), method: :delete, remote: true, class: "text-gray-500 space-x-2 group flex items-center justify-center" do %>
         <div class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-gray-50">
           <i class="fa-lg fa-trash" aria-hidden="true"></i>
         </div>

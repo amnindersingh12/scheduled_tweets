@@ -18,13 +18,9 @@
     </div>
   </div>
   <div class="prose prose-2xl text-gray-900 my-3">
-    <% if @tweet.tweet_id? %>
-      <%= @tweet.tweet.body %>
-    <% else %>
-      <p class="overflow-auto">
-        <%= @tweet.body %>
-      </p>
-    <% end %>
+    <p class="overflow-auto">
+      <%= @tweet.body %>
+    </p>
   </div>
   <ul class="py-3 border-t text-gray-700 flex space-x-4 text-sm">
     <li>

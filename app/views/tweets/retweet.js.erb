@@ -1,4 +1,2 @@
-
-
-$("#<%= @tweet.id %>_r").append("<%= render 'tweets/retweet', tweet: @retweet %>");
-console.log("afsdf");
+console.log("retweet......... update");
+$('#tweets').prepend("<%= escape_javascript(render partial: 'tweets/retweet', locals: { tweet: @tweet }) %>");
