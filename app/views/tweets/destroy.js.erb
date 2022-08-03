@@ -1,4 +1,3 @@
-
-
-console.log("jhel")
-$('#retweet_<%= dom_id(@tweet) %>').html("<%= render 'tweets/retweet'%>");    %>
+var x  = $('#<%= @tweet.id %>_r');
+alert("Are you sure you want to delete this tweet?");
+x.remove();

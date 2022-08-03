@@ -1,3 +1,4 @@
-console.log("afsdf");
 
-$('#retweet_<%=@tweet.id%>').html("<%= render 'tweets/retweet'%>");
+
+$("#<%= @tweet.id %>_r").append("<%= render 'tweets/retweet', tweet: @retweet %>");
+console.log("afsdf");

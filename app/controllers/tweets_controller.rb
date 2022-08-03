@@ -28,14 +28,12 @@ class TweetsController < ApplicationController
   end
 
   def destroy
+    @tweet = Tweet.find(params[:id])
+    if current_user.id == Tweet.find(params[:id]).user_id
+      Tweet.find(params[:id]).destroy
+    end
     respond_to do |format|
-      if current_user.id == Tweet.find(params[:id]).user_id
-        Tweet.find(params[:id]).destroy
-        format.js { }
-      else
-        
-        format.js { }
-      end
+      format.js { }
     end
   end
 
@@ -46,7 +44,6 @@ class TweetsController < ApplicationController
     @retweet.save
 
     respond_to do |format|
-
       format.js { }
     end
   end
