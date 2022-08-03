@@ -1,3 +1,8 @@
-var x  = $('#<%= @tweet.id %>_r');
 alert("Are you sure you want to delete this tweet?");
-x.remove();
+if (<%= @tweet.tweet_type === "tweet" %>){
+  $('#my_tweet_<%= @tweet.id %>').remove();
+}
+else{
+  $('#<%= @tweet.id %>_r').remove();
+}
+console.log("jehlm")
