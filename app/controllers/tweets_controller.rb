@@ -11,9 +11,10 @@ class TweetsController < ApplicationController
   def create
     @tweet = Tweet.new(tweet_params)
     @tweet.user_id = current_user.id
-    @tweet.save
     respond_to do |format|
-      format.js { }
+      if @tweet.save
+        format.js { }
+      end
     end
   end
 
@@ -38,10 +39,11 @@ class TweetsController < ApplicationController
     @tweet = Tweet.find(params[:id])
     @retweet = current_user.tweets.new(tweet_id: @tweet.id)
     @retweet.body = "#{@tweet.body}"
-    @retweet.save
 
     respond_to do |format|
-      format.js { }
+      if @retweet.save
+        format.js { }
+      end
     end
   end
 
