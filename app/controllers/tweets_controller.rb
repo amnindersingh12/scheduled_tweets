@@ -25,6 +25,18 @@ class TweetsController < ApplicationController
     @user = User.find(@tweet.user_id)
   end
 
+  def retweet
+    @tweet = Tweet.find(params[:id])
+    @retweet = current_user.tweets.new(tweet_id: @tweet.id)
+    @retweet.body = "#{@tweet.body}"
+    @retweet.image = @tweet.image.blob
+    respond_to do |format|
+      if @retweet.save
+        format.js { }
+      end
+    end
+  end
+
   def destroy
     @tweet = Tweet.find(params[:id])
     if current_user.id == Tweet.find(params[:id]).user_id
@@ -35,19 +47,7 @@ class TweetsController < ApplicationController
     end
   end
 
-  def retweet
-    @tweet = Tweet.find(params[:id])
-    @retweet = current_user.tweets.new(tweet_id: @tweet.id)
-    @retweet.body = "#{@tweet.body}"
-
-    respond_to do |format|
-      if @retweet.save
-        format.js { }
-      end
-    end
-  end
-
   def tweet_params
-    params.require(:tweet).permit(:body, :tweet_id)
+    params.require(:tweet).permit(:body, :tweet_id, :image)
   end
 end

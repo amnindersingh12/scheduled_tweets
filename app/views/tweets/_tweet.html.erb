@@ -11,6 +11,7 @@
       </p>
       <%= link_to tweet do %>
         <%= tweet.body %>
+        <%= image_tag tweet.image unless tweet.image.blank? %>
       <% end %>
       <%= render "tweets/controls", tweet: tweet %>
     </div>

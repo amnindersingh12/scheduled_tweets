@@ -1,0 +1,10 @@
+<h1> <%= @comment.tweet.user.username %> has replied to your Tweet, <%= @comment.created_at.strftime("%b %d") %></h1>
+<h3>
+  Reply is:
+  <br>
+</h3>
+<h2>
+  <%= @comment.body %>
+</h2>
+<br>
+<%= image_tag @comment.image %>

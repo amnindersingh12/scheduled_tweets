@@ -4,6 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 gem "font-awesome-rails"
 
+gem "letter_opener"
 
 ruby "3.0.4"
 
@@ -11,7 +12,7 @@ gem "htmlbeautifier"
 
 gem "rufo"
 
-gem 'pry-rails'
+gem "pry-rails"
 
 # devise (authentication)
 gem "devise"
@@ -31,8 +32,8 @@ gem "puma", "~> 5.0"
 
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
 gem "importmap-rails"
-gem 'jquery-rails'
-gem 'rails-ujs'
+gem "jquery-rails"
+gem "rails-ujs"
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
 gem "turbo-rails"
 
