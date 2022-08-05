@@ -5,11 +5,13 @@ class TweetsController < ApplicationController
 
   def index
     @tweet = Tweet.new
+    # @tweet is an instance of Tweet
     @tweets = Tweet.all.order(created_at: :desc)
   end
 
   def create
     @tweet = Tweet.new(tweet_params)
+    # @tweet is an instance of Tweet
     @tweet.user_id = current_user.id
     respond_to do |format|
       if @tweet.save
@@ -48,6 +50,7 @@ class TweetsController < ApplicationController
   end
 
   def tweet_params
+    # here tweet_id is used to store the retweeted tweet id
     params.require(:tweet).permit(:body, :tweet_id, :image)
   end
 end

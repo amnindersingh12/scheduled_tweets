@@ -12,7 +12,6 @@ class Tweet < ActiveRecord::Base
     else
       "tweet"
     end
-
   end
 end
 

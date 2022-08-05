@@ -1,22 +1,12 @@
-<div class="items-start justify-center block h-full grid-cols-1 gap-4 lg:grid lg:items-center lg:grid-cols-2  ">
-  <img src="https://abs.twimg.com/sticky/illustrations/lohp_en_1302x955.png">
-  <div class="relative z-20 px-6 mx-auto lg:px-12 max-w-lg">
-    <div class="mb-4 xl:mt-8">
-      <div class="mt-6 mb-4 lg:mt-0">
-        <%= link_to "Back", root_path, class: "text-gray-600 underline flex items-center hover:text-gray-700 hover:no-underline" %>
-      </div>
-      <h2 class="pt-6 font-sans text-3xl font-black leading-tight mb-3"> Resend confirmation instructions</h2>
-      <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name) ,html: { method: :post }) do |f| %>
-        <%= render "devise/shared/error_messages", resource: resource %>
-        <div class="mb-6">
-          <%= f.label :email %><br />
-          <%= f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) ,class:"form-control" %>
-        </div>
-        <div class="actions">
-          <%= f.submit "Resend confirmation instructions"  ,class: "px-6 py-2 bg-sky-400 text-white font-semibold rounded-full text-center cursor-pointer inline-block hover:bg-sky-500 transition ease-in-out duration-300" %>
-        </div>
-      <% end %>
+<%= render layout: "auth_layout", locals: { title: "Resend confirmation instructions" } do %>
+  <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+    <div class="mb-6">
+      <%= f.label :email, class: label_class %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email), class: input_class %>
     </div>
-  </div>
-</div>
-<%# render "devise/shared/links" %>
+    <div class="mb-6">
+      <%= f.submit "Resend instructions", class: "p-3 w-full block bg-sky-500 hover:bg-sky-600 text-white rounded text-center font-sans font-normal outline-none leading-normal cursor-pointer transition ease-in-out duration-200 font-medium" %>
+    </div>
+  <% end %>
+<% end %>

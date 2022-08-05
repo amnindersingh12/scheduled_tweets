@@ -1,11 +1,13 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
 
-  
+  layout :new_layout
 
-  def require_login
-    if !user_signed_in?
-      redirect_to new_user_session_path
+  def new_layout
+    if devise_controller?
+      "devise"
+    else
+      "application"
     end
   end
 

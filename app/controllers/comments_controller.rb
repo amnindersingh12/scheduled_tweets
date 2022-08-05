@@ -7,9 +7,9 @@ class CommentsController < ApplicationController
     if @comment.save
 
       # Send email to user who commented
-      sender_author = @comment.tweet.user
-      if sender_author != @comment.user
-        CommentMailer.comment_email(sender_author, @comment).deliver_now
+      sender_author = @comment.tweet.user # tweet.user is the author of the tweet that the comment is associated with (tweet_id)
+      if sender_author != @comment.user # comment.user is the user who commented
+        CommentMailer.comment_email(sender_author, @comment).deliver_now # Send email to author of tweet
       end
 
       # Send email to all users who liked the tweet
@@ -18,7 +18,6 @@ class CommentsController < ApplicationController
           CommentMailer.comment_email(like.user, @comment).deliver_now
         end
       end
-
 
       respond_to do |format|
         format.js
@@ -33,6 +32,7 @@ class CommentsController < ApplicationController
       format.js { }
     end
   end
+
   def recomment
     @comment = Comment.find(params[:id])
     @recomment = @comment.recomments.new(recomment_params.merge(user: current_user))
@@ -45,12 +45,12 @@ class CommentsController < ApplicationController
     end
   end
 
-
   def comment_params
     params.require(:comment).permit(:body, :image)
   end
 
   def set_tweet
+    # tweet.id is the id of the tweet that the comment is associated with (tweet_id)
     @tweet = Tweet.find(params[:tweet_id])
   end
 end
