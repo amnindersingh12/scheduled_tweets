@@ -6,12 +6,24 @@
   </div>
   <div class="flex space-x-3 items-start">
     <div class="flex-shrink-0">
-      <%= profile_image(tweet.tweet.user) %>
+    <%# if the tweet is retweeted %>
+      <% if tweet.tweet_type == "retweet" %>
+        <%= profile_image(tweet.tweet.user) %>
+      <% else %>
+        <%= profile_image(tweet.user) %>
+      <% end %>
     </div>
     <div class="flex-1">
       <p class="font-bold">
+      <% if tweet.tweet_type == "retweet" %>
+
         <%= tweet.tweet.user.first_name %>
         @<%= link_to tweet.tweet.user.username, profile_path(tweet.tweet.user), class: "hover:underline" %>.
+      <% else %>
+        <%= tweet.user.first_name %>
+        @<%= link_to tweet.user.username, profile_path(tweet.user), class: "hover:underline" %>.
+      <% end %>
+
         <%= tweet.created_at.strftime("%b %d") %>
       </p>
       <%= tweet.body %>

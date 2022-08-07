@@ -1,18 +1,17 @@
 class TweetsController < ApplicationController
-  include ActionView::Helpers::DateHelper
+  include ActionView::Helpers::DateHelper # to use time_ago_in_words
 
   before_action :authenticate_user!
 
   def index
-    @tweet = Tweet.new
-    # @tweet is an instance of Tweet
+    @tweet = Tweet.new # to create a new tweet, @tweet is an instance of Tweet
     @tweets = Tweet.all.order(created_at: :desc)
   end
 
   def create
-    @tweet = Tweet.new(tweet_params)
+    @tweet = Tweet.new(tweet_params) #
     # @tweet is an instance of Tweet
-    @tweet.user_id = current_user.id
+    @tweet.user_id = current_user.id # user_id is the id of the user who created the tweet and user.id is the id of the user who created the tweet
     respond_to do |format|
       if @tweet.save
         format.js { }
@@ -41,8 +40,8 @@ class TweetsController < ApplicationController
 
   def destroy
     @tweet = Tweet.find(params[:id])
-    if current_user.id == Tweet.find(params[:id]).user_id
-      Tweet.find(params[:id]).destroy
+    if current_user.id == Tweet.find(params[:id]).user_id # if the user who created the tweet is the same as the user who is deleting the tweet then delete the tweet
+      @tweet.destroy
     end
     respond_to do |format|
       format.js { }

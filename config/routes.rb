@@ -5,9 +5,9 @@ Rails.application.routes.draw do
   root to: "tweets#index"
 
   resources :tweets, except: [:edit, :update] do
-    resources :comments
+    resources :comments # tweets/:id/comments
     member do
-      post :retweet
+      post :retweet # tweets/:id/retweet
     end
   end
 
@@ -26,12 +26,12 @@ Rails.application.routes.draw do
   resources :profiles
 
   # add likes
-  resources :likes
+  resources :likes # tweets/:id/likes
 
 
 
   # add followers
-  post "profiles/follow", to: "profiles#follow"
+  post "profiles/follow", to: "profiles#follow" 
   delete "profiles/", to: "profiles#unfollow"
 
   # list follower and following

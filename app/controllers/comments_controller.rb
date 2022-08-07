@@ -3,6 +3,7 @@ class CommentsController < ApplicationController
   before_action :set_tweet
 
   def create
+    # merge(user: current_user) is because i want to pass the user that is logged in to the comment object
     @comment = @tweet.comments.new(comment_params.merge(user: current_user))
     if @comment.save
 
@@ -33,17 +34,6 @@ class CommentsController < ApplicationController
     end
   end
 
-  def recomment
-    @comment = Comment.find(params[:id])
-    @recomment = @comment.recomments.new(recomment_params.merge(user: current_user))
-    @recomment.body = "#{@tweet.body}"
-    @recomment.image = @tweet.image.blob
-    if @recomment.save
-      respond_to do |format|
-        format.js { }
-      end
-    end
-  end
 
   def comment_params
     params.require(:comment).permit(:body, :image)

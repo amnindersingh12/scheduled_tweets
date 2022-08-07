@@ -6,7 +6,7 @@ class ProfilesController < ApplicationController
   end
 
   def follow
-    Relationship.create_or_find_by(follower_id: current_user.id, followee_id: @profile.id)
+    Relationship.create_or_find_by(follower_id: current_user.id, followee_id: @profile.id) # create_or_find_by is a method from the relationship model, which checks if the relationship already exists and if it does, it doesn't create a new one.
     respond_to do |format|
       format.js { }
     end
@@ -20,7 +20,7 @@ class ProfilesController < ApplicationController
   end
 
   def follower
-    @followers = @profile.followers
+    @followers = @profile.followers # @followers is an array of users who are following @profile, here @profile is the user whose profile we are on.
   end
 
   def set_profile

@@ -20,6 +20,7 @@
   <div class="prose prose-2xl text-gray-900 my-3">
     <p class="overflow-auto">
       <%= @tweet.body %>
+      <%= image_tag @tweet.image unless @tweet.image.blank? %>
     </p>
   </div>
   <ul class="py-3 border-t text-gray-700 flex space-x-4 text-sm">

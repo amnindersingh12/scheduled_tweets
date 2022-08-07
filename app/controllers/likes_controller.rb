@@ -6,7 +6,7 @@ class LikesController < ApplicationController
       @like = Like.find_by(likeable_id: @likeable.id, user: current_user)
       @like.destroy
     else
-      @like = @likeable.likes.new
+      @like = @likeable.likes.new # here likes is the association of the likeable object with the user object model 
       @like.user = current_user
       @like.save
     end

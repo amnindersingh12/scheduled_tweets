@@ -1,6 +1,6 @@
 module ProfileHelper
   def following?(user)
     current_user&.followees&.include?(user)
-    # just checking if im following the other user or not
+    # just checking if im(current_user) is following user(user)
   end
 end

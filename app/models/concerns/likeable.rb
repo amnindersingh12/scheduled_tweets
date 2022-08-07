@@ -2,7 +2,7 @@ module Likeable
   extend ActiveSupport::Concern
 
   included do
-    has_many :likes, as: :likeable
+    has_many :likes, as: :likeable # polymorphic association
   end
 
   def liked_by?(user)

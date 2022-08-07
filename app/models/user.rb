@@ -2,9 +2,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :tweets
-  validates :email, presence: true, uniqueness: true, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, on: :create }
+  validates :email, presence: true, uniqueness: true
   has_one_attached :profile_image
-  validates :profile_image, presence: true
 
   # people we are following
   has_many :followed_users, foreign_key: :follower_id, class_name: "Relationship", dependent: :destroy

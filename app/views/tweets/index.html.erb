@@ -1,8 +1,7 @@
-<p class="sticky top-0 z-50 ml-3">Home</p>
 <div class="mb-8">
   <%= render "form" %>
   <div class="flex flex-wrap", id="tweets">
     <% @tweets.each do |t| %>
-      <%= render partial: "tweets/#{t.tweet_type.parameterize}", locals: { tweet: t } %>
+      <%= render partial: "tweets/#{t.tweet_type}", locals: { tweet: t } %>
     <% end %>
   </div>

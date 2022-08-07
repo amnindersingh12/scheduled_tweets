@@ -1,7 +1,7 @@
 <div class="p-6">
   <div class="flex items-center justify-between space-x-4">
     <div class="flex items-center">
-      <%= profile_image(@profile) %>
+      <%= profile_image(@profile, size: "large") %>
     </div>
     <div class="flex-1">
       <div>
@@ -20,7 +20,7 @@
           <% else %>
             <%= button_to "Follow", profiles_follow_path(id: @profile.id), method: :post, class: "inline-flex justify-center items-center px-5 py-2 rounded-full border ring-4 focus:ring-sky-50 ring-transparent hover:ring-sky-50 hover:border-gray-300", remote: true %>
           <% end %>
-        
+
       </div>
 
 
