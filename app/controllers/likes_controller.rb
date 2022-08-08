@@ -6,7 +6,7 @@ class LikesController < ApplicationController
       @like = Like.find_by(likeable_id: @likeable.id, user: current_user)
       @like.destroy
     else
-      @like = @likeable.likes.new # here likes is the association of the likeable object with the user object model 
+      @like = @likeable.likes.new # here likes is the association of the likeable object with the user object model
       @like.user = current_user
       @like.save
     end
@@ -15,6 +15,10 @@ class LikesController < ApplicationController
     respond_to do |format|
       format.js { }
     end
+  end
+
+  def index
+    @likes = @likeable.likes # @likes is an array of likes
   end
 
   def set_likeable

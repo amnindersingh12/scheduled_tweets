@@ -43,6 +43,8 @@ gem "stimulus-rails"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 
+gem 'delayed_job_active_record'
+gem 'delayed_job_web'
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 

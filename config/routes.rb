@@ -8,6 +8,8 @@ Rails.application.routes.draw do
     resources :comments # tweets/:id/comments
     member do
       post :retweet # tweets/:id/retweet
+      # list users who retweeted this tweet
+      get :retweeters
     end
   end
 
@@ -31,15 +33,17 @@ Rails.application.routes.draw do
 
 
   # add followers
-  post "profiles/follow", to: "profiles#follow" 
+  post "profiles/follow", to: "profiles#follow"
   delete "profiles/", to: "profiles#unfollow"
 
   # list follower and following
   get "profiles/:id/follower", to: "profiles#follower", as: :follower
 
+  match "/delayed_job" => DelayedJobWeb, :anchor => false, :via => [:get, :post]
+
   # add comments
   # get "tweet/:id/comment", to: "tweets#comment"
   # delete "profiles/", to: "profiles#unfollow"
-# resources :comments
+  # resources :comments
 
 end

@@ -5,21 +5,26 @@ class CommentsController < ApplicationController
   def create
     # merge(user: current_user) is because i want to pass the user that is logged in to the comment object
     @comment = @tweet.comments.new(comment_params.merge(user: current_user))
+
     if @comment.save
 
       # Send email to user who commented
       sender_author = @comment.tweet.user # tweet.user is the author of the tweet that the comment is associated with (tweet_id)
       if sender_author != @comment.user # comment.user is the user who commented
-        CommentMailer.comment_email(sender_author, @comment).deliver_now # Send email to author of tweet
+        # user delayed_job
+        CommentJob.delay.perform_later(@comment, sender_author)
+
       end
 
       # Send email to all users who liked the tweet
       @comment.tweet.likes.each do |like|
         if like.user != @comment.user
-          CommentMailer.comment_email(like.user, @comment).deliver_now
+          CommentJob.delay.perform_later(@comment, sender_author)
+          
+
+
         end
       end
-
       respond_to do |format|
         format.js
       end
@@ -33,7 +38,6 @@ class CommentsController < ApplicationController
       format.js { }
     end
   end
-
 
   def comment_params
     params.require(:comment).permit(:body, :image)

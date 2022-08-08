@@ -7,6 +7,6 @@
     <% end %>
   </div>
   <span class="group-hover:text-rose-500 text-gray-500">
-    <div id="<%= likeable.id %>_likes-size"><%= likeable.likes.size %></div>
+    <%= link_to likeable.likes.size, likes_path(likeable_id: likeable.id, likeable_type: likeable.model_name.name), id: "#{likeable.id}_likes-size" %>
   </span>
 <% end %>

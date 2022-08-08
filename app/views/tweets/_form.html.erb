@@ -6,6 +6,6 @@
   <%= form.submit "Tweet", class: "px-6 py-2 bg-sky-400 text-white font-semibold rounded-full text-center cursor-pointer inline-block hover:bg-sky-500 transition ease-in-out duration-300" %>
 </div>
 <div class="justify-start px-6 -mt-10">
-  <%= form.file_field :image, id: "image_f", required: "required", class: "block mb-5 w-10px text-xs text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" %>
+  <%= form.file_field :image, id: "image_f", required: "required", accept:"image/png, image/gif, image/jpeg", class: "block mb-5 w-10px text-xs text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" %>
 </div>
 <% end %>

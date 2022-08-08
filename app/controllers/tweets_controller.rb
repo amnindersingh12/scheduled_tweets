@@ -48,6 +48,12 @@ class TweetsController < ApplicationController
     end
   end
 
+  def retweeters
+    # list all the users who retweeted a tweet
+    @retweeters = Tweet.all.select { |tweet| tweet.tweet_id != nil }
+  end
+
+
   def tweet_params
     # here tweet_id is used to store the retweeted tweet id
     params.require(:tweet).permit(:body, :tweet_id, :image)
