@@ -14,6 +14,7 @@ class TweetsController < ApplicationController
     @tweet.user_id = current_user.id # user_id is the id of the user who created the tweet and user.id is the id of the user who created the tweet
     respond_to do |format|
       if @tweet.save
+        Notification.create(recipient: @tweet.user, actor: current_user, action: "tweeted", notifiable: @tweet)
         format.js { }
       end
     end
@@ -33,6 +34,8 @@ class TweetsController < ApplicationController
     @retweet.image = @tweet.image.blob
     respond_to do |format|
       if @retweet.save
+
+        Notification.create(recipient: @tweet.user, actor: current_user, action: "retweeted", notifiable: @retweet)
         format.js { }
       end
     end

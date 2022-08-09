@@ -1,0 +1,30 @@
+<% @notifications.each do |notification| %>
+  <div class="flex items-start justify-between space-x-3 mt-6 ml-6">
+    <%= profile_image(notification.actor) %>
+    <div class="flex-1">
+      <p class="font-bold">
+        <%= link_to notification.actor.first_name, profile_path(notification.actor) %>.
+        <%= time_ago_in_words(notification.created_at) %>
+      </p>
+      <p class="text-gray-700"><%= "@" + notification.actor.username %></p>
+    </div>
+  </div>
+  <main class="prose prose-2xl text-gray-900 my-3">
+    <p class="overflow-auto ml-6">
+      <% if notification.action == "commented" %>
+        <%= "#{notification.actor.username}" %> <%= "commented on your tweet" %>
+      <% elsif notification.action == "liked" %>
+        <%= "#{notification.actor.username}" %> <%= link_to "liked your tweet", tweet_path(notification.notifiable_id) %>
+      <% elsif notification.action == "retweeted" %>
+        <%= "#{notification.actor.username}" %> <%= link_to "retweeted your tweet", tweet_path(notification.notifiable_id) %>
+      <% elsif notification.action == "followed_you" %>
+        <%= "#{notification.actor.username}" %> <%= link_to "is now following you", profile_path(notification.actor) %>
+      <% elsif notification.action == "unliked" %>
+        <%= "#{notification.actor.username}" %><%= link_to " unliked your tweet", tweet_path(notification.notifiable_id) %>
+      <% elsif notification.action == "unfollowed_you" %>
+        <%= "#{notification.actor.username}" %> <%= link_to "is no longer following you", profile_path(notification.actor) %>
+      <% elsif notification.action == "tweeted" %>
+        <%= "#{notification.actor.username}" %> <%= link_to "tweeted", tweet_path(notification.notifiable_id) %>
+      <% end %>
+    </p>
+  <% end %>

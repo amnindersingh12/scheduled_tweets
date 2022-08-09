@@ -1,0 +1,13 @@
+
+
+
+<div>
+<%= render "shared/sidebar" %>
+<div class="container">
+<%if @notifications.count>0 %>
+    <%=render "notification",notifications:@notifications%>
+<%else%>
+    <p>You have no new notifications</p>
+<%end%>
+</div>
+</div>

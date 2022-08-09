@@ -11,23 +11,19 @@ class CommentsController < ApplicationController
       # Send email to user who commented
       sender_author = @comment.tweet.user # tweet.user is the author of the tweet that the comment is associated with (tweet_id)
       if sender_author != @comment.user # comment.user is the user who commented
-        # user delayed_job
-        CommentJob.delay.perform_later(@comment, sender_author)
 
+        # sending email to the user who commented
+        CommentJob.set(wait: 5.seconds).perform_later(@comment, sender_author)
       end
 
       # Send email to all users who liked the tweet
-      @comment.tweet.likes.each do |like|
-        if like.user != @comment.user
-          CommentJob.delay.perform_later(@comment, sender_author)
-          
-
-
-        end
+      @comment.tweet.likes.uniq - [@comment.user].each do |like|
+        CommentJob.set(wait: 5.seconds).perform_later(@comment, like)
       end
-      respond_to do |format|
-        format.js
-      end
+    end
+    respond_to do |format|
+      Notification.create(recipient: sender_author, actor: @comment.user, action: "commented", notifiable: @comment)
+      format.js
     end
   end
 

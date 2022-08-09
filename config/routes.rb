@@ -39,7 +39,16 @@ Rails.application.routes.draw do
   # list follower and following
   get "profiles/:id/follower", to: "profiles#follower", as: :follower
 
+  # display delayed jobs
   match "/delayed_job" => DelayedJobWeb, :anchor => false, :via => [:get, :post]
+
+  # add notification
+  resources :notifications do
+    collection do
+      post :mark_as_read
+    end
+  end
+  
 
   # add comments
   # get "tweet/:id/comment", to: "tweets#comment"

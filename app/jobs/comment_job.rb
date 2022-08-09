@@ -1,14 +1,10 @@
 class CommentJob < ApplicationJob
-  queue_as :default
+  queue_as :urgent
 
   def perform(comment, sender_author)
-    CommentMailer.comment_email(comment, sender_author).deliver_later
+    # here, comment is the comment object, and sender_author is the user who commented
+    CommentMailer.comment_email(sender_author, comment).deliver_later
   end
 
-
-  def perform_later(comment, sender_author)
-    CommentMailer.comment_email(comment, sender_author).deliver_later
-
-  end
 
 end

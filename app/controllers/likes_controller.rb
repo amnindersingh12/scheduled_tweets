@@ -5,10 +5,12 @@ class LikesController < ApplicationController
     if @likeable.likes.count >= 1 && @likeable.liked_by?(current_user)
       @like = Like.find_by(likeable_id: @likeable.id, user: current_user)
       @like.destroy
+      Notification.create(recipient: @likeable.user, actor: current_user, action: "unliked", notifiable: @likeable)
     else
       @like = @likeable.likes.new # here likes is the association of the likeable object with the user object model
       @like.user = current_user
       @like.save
+      Notification.create(recipient: @likeable.user, actor: current_user, action: "liked", notifiable: @likeable)
     end
 
     @likes_count = @likeable.likes.count
