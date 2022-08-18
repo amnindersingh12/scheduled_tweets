@@ -9,13 +9,10 @@
 <div class="flex p-6 ml-16">
   <div class="flex-1 h-16 ">
     <p class="text-blue-500 hover:text-blue-800 mb-6" >Retweeted by </p>
-    <% @retweeters.each do |retweet| %>
-      <p><%= retweet.user.email %></p>
-      <%# and display their retweet %>
-      <%= retweet.tweet.body %>
-      <div>
-        <%= retweet.user.email %>
-      </div>
+    <%# binding.pry %>
+    <% @retweeters.map(&:user_id).uniq.each do |retweeter| %>
+    <%# Here we are getting the user_id of the retweeter and then getting the user object from the user_id %>
+      <p><%= User.where(id:retweeter)[0].email %></p>
     <% end %>
   </div>
 </div>

@@ -28,7 +28,8 @@
         <div class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-green-50">
           <i class="fa-lg fa-retweet"></i>
         </div>
-        <%= link_to Tweet.where(tweet_id: tweet).count, retweeters_tweet_path(tweet), id: "#{tweet.id}_r_count", class: "items-end group-hover:text-green-500 text-gray-500" %>
+        <%= link_to Tweet.where(parent_tweet_id: tweet.id).count,
+        retweeters_tweet_path(tweet), id: "#{tweet.id}_r_count", class: "items-end group-hover:text-green-500 text-gray-500" %>
       <% end %>
     </li>
   <% end %>

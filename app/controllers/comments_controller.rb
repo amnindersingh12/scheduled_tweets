@@ -9,7 +9,7 @@ class CommentsController < ApplicationController
     if @comment.save
 
       # Send email to user who commented
-      sender_author = @comment.tweet.user # tweet.user is the author of the tweet that the comment is associated with (tweet_id)
+      sender_author = @comment.tweet.user # tweet.user is the author of the tweet that the comment is associated with (parent_tweet_id)
       if sender_author != @comment.user # comment.user is the user who commented
 
         # sending email to the user who commented
@@ -40,7 +40,6 @@ class CommentsController < ApplicationController
   end
 
   def set_tweet
-    # tweet.id is the id of the tweet that the comment is associated with (tweet_id)
-    @tweet = Tweet.find(params[:tweet_id])
+    @tweet = Tweet.find(params[:parent_tweet_id])
   end
 end

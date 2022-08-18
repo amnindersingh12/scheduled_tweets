@@ -29,7 +29,7 @@ class TweetsController < ApplicationController
 
   def retweet
     @tweet = Tweet.find(params[:id])
-    @retweet = current_user.tweets.new(tweet_id: @tweet.id)
+    @retweet = current_user.tweets.new(parent_tweet_id: @tweet.id)
     @retweet.body = "#{@tweet.body}"
     @retweet.image = @tweet.image.blob
     respond_to do |format|
@@ -53,12 +53,12 @@ class TweetsController < ApplicationController
 
   def retweeters
     # list all the users who retweeted a tweet
-    @retweeters = Tweet.all.select { |tweet| tweet.tweet_id != nil }
+    @retweeters = Tweet.all.select { |tweet| tweet.parent_tweet_id != nil }
   end
 
 
   def tweet_params
-    # here tweet_id is used to store the retweeted tweet id
-    params.require(:tweet).permit(:body, :tweet_id, :image)
+    # here parent_tweet_id is used to store the retweeted tweet id
+    params.require(:tweet).permit(:body, :parent_tweet_id, :image)
   end
 end
