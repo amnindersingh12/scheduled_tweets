@@ -1,0 +1,3 @@
+$('#reply_form').prepend("<%= escape_javascript(render partial: 'replies/replytweet', locals: { reply: @reply }) %>");
+$('#reply_body').val('');
+$('#image_f').val('');

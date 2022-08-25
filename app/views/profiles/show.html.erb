@@ -14,16 +14,13 @@
         <%= link_to "Edit profile", edit_user_registration_path, class: "inline-flex justify-center items-center px-5 py-2 rounded-full border ring-4 focus:ring-sky-50 ring-transparent hover:ring-sky-50 hover:border-gray-300" %>
       </div>
     <% elsif current_user %>
-        <div id='f_id'>
-          <% if following?(@profile) %>
-            <%= button_to "Unfollow", profiles_path(id: @profile.id), method: :delete, class: "inline-flex justify-center items-center px-5 py-2 rounded-full border ring-4 focus:ring-sky-50 ring-transparent hover:ring-sky-50 hover:border-gray-300", remote: true %>
-          <% else %>
-            <%= button_to "Follow", profiles_follow_path(id: @profile.id), method: :post, class: "inline-flex justify-center items-center px-5 py-2 rounded-full border ring-4 focus:ring-sky-50 ring-transparent hover:ring-sky-50 hover:border-gray-300", remote: true %>
-          <% end %>
-
+      <div id='f_id'>
+        <% if following?(@profile) %>
+          <%= button_to "Unfollow", profiles_path(id: @profile.id), method: :delete, class: "inline-flex justify-center items-center px-5 py-2 rounded-full border ring-4 focus:ring-sky-50 ring-transparent hover:ring-sky-50 hover:border-gray-300", remote: true %>
+        <% else %>
+          <%= button_to "Follow", profiles_follow_path(id: @profile.id), method: :post, class: "inline-flex justify-center items-center px-5 py-2 rounded-full border ring-4 focus:ring-sky-50 ring-transparent hover:ring-sky-50 hover:border-gray-300", remote: true %>
+        <% end %>
       </div>
-
-
     <% end %>
   </div>
   <div class="p-6">

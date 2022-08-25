@@ -5,18 +5,18 @@ class ApplicationController < ActionController::Base
 
   def new_layout
     if devise_controller?
-      "devise"
+      'devise'
     else
-      "application"
+      'application'
     end
   end
 
   protected
 
   def configure_permitted_parameters
-    attributes = [:username, :first_name, :email, :password, :password_confirmation, :profile_image]
+    attributes = %i[username first_name email password password_confirmation profile_image]
     devise_parameter_sanitizer.permit(:sign_up, keys: attributes)
     devise_parameter_sanitizer.permit(:account_update, keys: attributes)
-    devise_parameter_sanitizer.permit(:sign_in, keys: [:email, :password])
+    devise_parameter_sanitizer.permit(:sign_in, keys: %i[email password])
   end
 end

@@ -11,9 +11,7 @@
   </div>
   <main class="prose prose-2xl text-gray-900 my-3">
     <p class="overflow-auto ml-6">
-      <% if notification.action == "commented" %>
-        <%= "#{notification.actor.username}" %> <%= "commented on your tweet" %>
-      <% elsif notification.action == "liked" %>
+      <% if notification.action == "likes" %>
         <%= "#{notification.actor.username}" %> <%= link_to "liked your tweet", tweet_path(notification.notifiable_id) %>
       <% elsif notification.action == "retweeted" %>
         <%= "#{notification.actor.username}" %> <%= link_to "retweeted your tweet", tweet_path(notification.notifiable_id) %>
