@@ -95,6 +95,7 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    diff-lcs (1.5.0)
     digest (3.1.0)
     erubi (1.10.0)
     font-awesome-rails (4.7.0.8)
@@ -203,6 +204,23 @@ GEM
     responders (3.0.1)
       actionpack (>= 5.0)
       railties (>= 5.0)
+    rspec-core (3.11.0)
+      rspec-support (~> 3.11.0)
+    rspec-expectations (3.11.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.11.0)
+    rspec-mocks (3.11.1)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.11.0)
+    rspec-rails (5.1.2)
+      actionpack (>= 5.2)
+      activesupport (>= 5.2)
+      railties (>= 5.2)
+      rspec-core (~> 3.10)
+      rspec-expectations (~> 3.10)
+      rspec-mocks (~> 3.10)
+      rspec-support (~> 3.10)
+    rspec-support (3.11.0)
     ruby2_keywords (0.0.5)
     rufo (0.13.0)
     sinatra (2.2.2)
@@ -264,6 +282,7 @@ DEPENDENCIES
   rails (~> 7.0.3)
   rails-ujs
   rdoc
+  rspec-rails
   rufo
   sprockets-rails
   sqlite3 (~> 1.4)
