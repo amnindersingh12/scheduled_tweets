@@ -4,15 +4,8 @@ class Tweet < ActiveRecord::Base
   belongs_to :parent_tweet, class_name: 'Tweet', foreign_key: :parent_tweet_id, optional: true
   validates :body, length: { maximum: 240 }, allow_blank: false, unless: :parent_tweet_id
   has_one_attached :image
-  before_save :set_tweet_type
 
-  def set_tweet_type
-    self.tweet_type = if parent_tweet_id? && body?
-                        'reply'
-                      elsif !parent_tweet_id? && body?
-                        'tweet'
-                      elsif parent_tweet_id?
-                        'retweet'
-                      end
-  end
+  scope :get_followers, -> { where(user_id: Current.user.followees).order(created_at: :desc) }
+  scope :get_replies, ->(id) { where(parent_tweet_id: id).order(created_at: :desc) }
+  scope :my_tweets, -> { where(user_id: Current.user).order(created_at: :desc) }
 end

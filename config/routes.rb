@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :tweets, except: %i[edit update] do
     member do
       post :retweet
-      get :retweeters
+      # get :retweeters
       post :reply
     end
   end
@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   resources :profiles
 
   resources :likes
-
+  get "tweets/route", to: 'tweets#route'
   post 'profiles/follow', to: 'profiles#follow'
   delete 'profiles/', to: 'profiles#unfollow'
 

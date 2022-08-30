@@ -14,4 +14,6 @@ class User < ApplicationRecord
   has_many :followers, through: :following_users, dependent: :destroy
 
   has_many :notifications, foreign_key: :recipient_id
+
+  
 end

@@ -1,6 +1,11 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :set_current_user
 
+  def set_current_user
+    Current.user = current_user
+    # binding.pry
+  end
   layout :new_layout
 
   def new_layout

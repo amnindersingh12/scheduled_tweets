@@ -6,7 +6,7 @@ gem 'font-awesome-rails'
 
 gem 'letter_opener'
 
-ruby '3.0.4'
+ruby '3.1.2'
 
 gem 'htmlbeautifier'
 

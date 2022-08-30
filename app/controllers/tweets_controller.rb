@@ -2,11 +2,13 @@ class TweetsController < ApplicationController
   include ActionView::Helpers::DateHelper
 
   before_action :authenticate_user!
-
   def index
     @tweet = Tweet.new
-    @tweets = Tweet.all.order(created_at: :desc)
-    @replies = Tweet.where(parent_tweet_id: params[:id]).order(created_at: :desc)
+    followers_tweets = Tweet.get_followers
+
+    @tweets = Tweet.my_tweets + followers_tweets
+    # @tweets = Tweet.all.order(created_at: :desc)
+    @replies = Tweet.get_replies(params[:id])
   end
 
   def create
@@ -22,13 +24,14 @@ class TweetsController < ApplicationController
   def show
     @tweet = Tweet.find(params[:id])
     @reply = Tweet.find(params[:id])
-    @replies = Tweet.where(parent_tweet_id: params[:id]).order(created_at: :desc)
+    @replies = Tweet.get_replies(params[:id])
+    # where(parent_tweet_id: params[:id]).order(created_at: :desc)
     @user = User.find(@tweet.user_id)
   end
 
   def retweet
     @tweet = Tweet.find(params[:id])
-    @retweet = current_user.tweets.new(parent_tweet_id: @tweet.id)
+    @retweet = current_user.tweets.new(parent_tweet_id: @tweet.id, tweet_type: :retweet)
     @retweet.body = @tweet.body.to_s
     @retweet.image = @tweet.image.blob
     respond_to do |format|
@@ -41,7 +44,8 @@ class TweetsController < ApplicationController
 
   def reply
     @tweet = Tweet.find(params[:id])
-    @reply = current_user.tweets.create(parent_tweet_id: @tweet.id, body: params[:body], image: params[:image])
+    @reply = current_user.tweets.new(parent_tweet_id: @tweet.id, body: params[:body], image: params[:image],
+                                     tweet_type: :reply)
     respond_to do |format|
       format.js {} if @reply.save
     end
@@ -54,10 +58,6 @@ class TweetsController < ApplicationController
     respond_to do |format|
       format.js {}
     end
-  end
-
-  def retweeters
-    @retweeters = Tweet.all.select { |tweet| !tweet.parent_tweet_id.nil? }
   end
 
   def tweet_params
