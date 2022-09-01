@@ -1,0 +1,10 @@
+<h1> <%= @content.user.username %> (<%= @content.user.email %>) has replied to your Tweet, <%= @content.created_at.strftime("%b %d") %></h1>
+<h3>
+  Reply is:
+  <br>
+</h3>
+<h2>
+  <%= @content.body %>
+</h2>
+<br>
+<%#= image_tag @content.image %>

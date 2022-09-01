@@ -1,6 +1,6 @@
 class Tweet < ActiveRecord::Base
   include Likeable
-  belongs_to :user
+  belongs_to :user  # foreign key - employee_id
   belongs_to :parent_tweet, class_name: 'Tweet', foreign_key: :parent_tweet_id, optional: true
   validates :body, length: { maximum: 240 }, allow_blank: false, unless: :parent_tweet_id
   has_one_attached :image

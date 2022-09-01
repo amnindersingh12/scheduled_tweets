@@ -15,5 +15,7 @@ class User < ApplicationRecord
 
   has_many :notifications, foreign_key: :recipient_id
 
-  
+# binding.pry
+
+# scope :get_followers, -> { where(user_id: Current.user.followees).order(created_at: :desc) }
 end

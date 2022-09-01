@@ -7,6 +7,7 @@ class ProfilesController < ApplicationController
   def follow
     Relationship.create_or_find_by(follower_id: current_user.id, followee_id: @profile.id)
     respond_to do |format|
+      format.html { redirect_back fallback_location: root_path }
       Notification.create(recipient: @profile, actor: current_user, action: 'followed_you', notifiable: @profile)
       format.js {}
     end
@@ -15,6 +16,7 @@ class ProfilesController < ApplicationController
   def unfollow
     current_user.followed_users.where(follower_id: current_user.id, followee_id: @profile.id).destroy_all
     respond_to do |format|
+      format.html { redirect_back fallback_location: root_path }
       Notification.create(recipient: @profile, actor: current_user, action: 'unfollowed_you', notifiable: @profile)
       format.js {}
     end

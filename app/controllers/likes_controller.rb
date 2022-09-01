@@ -24,5 +24,6 @@ class LikesController < ApplicationController
 
   def set_likeable
     @likeable = params[:likeable_type].constantize.find(params[:likeable_id])
+  #  binding.pry
   end
 end
