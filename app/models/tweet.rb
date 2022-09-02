@@ -15,7 +15,6 @@ class Tweet < ActiveRecord::Base
   after_create_commit :sending_notification_for_reply_retweet
 
   def sending_notification_for_reply_retweet
-    # binding.pry
     return if parent_tweet.user == Current.user
 
     notification_reply_retweet = Notification.create(recipient: parent_tweet.user, actor: Current.user,

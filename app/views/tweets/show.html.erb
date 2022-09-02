@@ -23,7 +23,7 @@
         <%= @tweet.body %>
         <%= image_tag @tweet.image unless @tweet.image.blank? %>
       <% elsif @tweet.parent_tweet_id? and @tweet.body? %>
-        <p> <%= @reply.body %></p>
+        <p> <%= @tweet.body %></p>
       <% elsif @tweet.parent_tweet_id? and !@tweet.body? %>
         <p> <%= @tweet.parent_tweet.body %></p>
       <% end %>

@@ -4,7 +4,6 @@ class ApplicationController < ActionController::Base
 
   def set_current_user
     Current.user = current_user
-    # binding.pry
   end
   layout :new_layout
 

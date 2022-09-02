@@ -7,12 +7,10 @@ class LikesController < ApplicationController
       @like.destroy
       # Notification.create(recipient: @likeable.user, actor: current_user, action: 'unliked', notifiable: @likeable)
     else
-      @like = @likeable.likes.new
       @like.user = current_user
       @like.save
       # Notification.create(recipient: @likeable.user, actor: current_user, action: 'liked', notifiable: @likeable)
     end
-    @likes_count = @likeable.likes.count
     respond_to do |format|
       format.js {}
     end
@@ -24,6 +22,7 @@ class LikesController < ApplicationController
 
   def set_likeable
     @likeable = params[:likeable_type].constantize.find(params[:likeable_id])
-    #  binding.pry
+    @like = @likeable.likes.new
+    @likes_count = @likeable.likes.count
   end
 end
