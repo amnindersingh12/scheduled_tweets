@@ -9,7 +9,7 @@ RSpec.describe Tweet, type: :model do
 
   describe '#validations' do
     it 'should have body' do
-      tweet = Tweet.new(body: "").save
+      tweet = Tweet.new(body: '').save
       expect(tweet).to eq(false)
     end
   end

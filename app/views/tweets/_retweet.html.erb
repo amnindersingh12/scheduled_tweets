@@ -6,9 +6,9 @@
   <div class="flex space-x-3 items-start">
     <div class="flex-shrink-0">
       <% if tweet.tweet_type == "retweet" %>
-        <%= profile_image(tweet.parent_tweet.user) %>
+        <%= profile_image tweet.parent_tweet.user %>
       <% else %>
-        <%= profile_image(tweet.user) %>
+        <%= profile_image tweet.user %>
       <% end %>
     </div>
     <div class="flex-1">

@@ -1,10 +1,4 @@
-<h1> <%= @content.user.username %> (<%= @content.user.email %>) has replied to your Tweet, <%= @content.created_at.strftime("%b %d") %></h1>
-<h3>
-  Reply is:
-  <br>
-</h3>
-<h2>
-  <%= @content.body %>
-</h2>
-<br>
 <%#= image_tag @content.image %>
+<h1>You got a new notification.</h1>
+<p>From:<%= @content.user.username %> @ <%= @content.created_at.strftime("%b %d") %> </p>
+<p>Link to the <%= link_to Tweet, @content %> </p>

@@ -11,14 +11,14 @@
   </div>
   <main class="prose prose-2xl text-gray-900 my-3">
     <p class="overflow-auto ml-6">
-      <% if notification.action == "likes" %>
+      <% if notification.action == "liked" %>
         <%= "#{notification.actor.username}" %> <%= link_to "liked your tweet", tweet_path(notification.notifiable_id) %>
-      <% elsif notification.action == "retweeted" %>
+      <% elsif notification.action == "retweet" %>
         <%= "#{notification.actor.username}" %> <%= link_to "retweeted your tweet", tweet_path(notification.notifiable_id) %>
+      <% elsif notification.action == "reply" %>
+        <%= "#{notification.actor.username}" %> <%= link_to "replied on your tweet", tweet_path(notification.notifiable_id) %>
       <% elsif notification.action == "followed_you" %>
         <%= "#{notification.actor.username}" %> <%= link_to "is now following you", profile_path(notification.actor) %>
-      <% elsif notification.action == "unliked" %>
-        <%= "#{notification.actor.username}" %><%= link_to " unliked your tweet", tweet_path(notification.notifiable_id) %>
       <% elsif notification.action == "unfollowed_you" %>
         <%= "#{notification.actor.username}" %> <%= link_to "is no longer following you", profile_path(notification.actor) %>
       <% elsif notification.action == "tweeted" %>
