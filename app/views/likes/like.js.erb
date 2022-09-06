@@ -1,0 +1,8 @@
+if (<%= @tweet.likes.count >= 1 && @tweet.liked_by?(current_user) %>) {
+    <%binding.pry%>
+$("#like_icon_<%= @tweet.id %>").html('<i class="fa fa-heart" aria-hidden="true"></i>')
+}
+else {
+$("#like_icon_<%= @tweet.id %>").html('<i class="fa fa-heart-o" aria-hidden="true"></i>')
+}
+$("#<%= @tweet.id %>_likes-size").html('<%= @likes_count %>')

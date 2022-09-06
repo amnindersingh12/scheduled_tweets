@@ -3,8 +3,9 @@ class TweetsController < ApplicationController
 
   before_action :authenticate_user!
   before_action :setup_tweet, only: %i[retweet show reply]
+
   def create
-    @tweet = current_user.tweets.new(tweet_params)
+    @tweet = Current.user.tweets.new(tweet_params)
     respond_to do |format|
       if @tweet.save
         # Notification.create(recipient: @tweet.user, actor: current_user, action: 'tweeted', notifiable: @tweet)
@@ -52,6 +53,19 @@ class TweetsController < ApplicationController
   def show
     @replies = Tweet.get_replies(params[:id])
     @user = User.find(@tweet.user_id)
+  end
+
+  def like
+    @tweet = Tweet.find(params[:id])
+
+    if current_user.already_liked?(@tweet)
+      current_user.unlike(@tweet)
+    else
+      current_user.like(@tweet)
+    end
+    respond_to do |format|
+      format.js { render 'likes/like.js' }
+    end
   end
 
   def tweet_params

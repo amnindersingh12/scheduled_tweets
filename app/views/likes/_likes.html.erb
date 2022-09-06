@@ -1,12 +1,12 @@
-<%= button_to likes_path(likeable_id: likeable.id, likeable_type: likeable.model_name.name), method: :post, remote: true, class: "text-gray-500 space-x-2 group flex items-center justify-center" do %>
-  <div class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-rose-50", id= "like_icon_<%= likeable.id %>">
-    <% if likeable.liked_by?(current_user) %>
+<%= button_to like_path(tweet), method: :post, remote: true, class: "text-gray-500 space-x-2 group flex items-center justify-center" do %>
+  <div class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-rose-50", id= "like_icon_<%= tweet.id %>">
+    <% if current_user.already_liked?(tweet) %>
       <i class="fa fa-heart" aria-hidden="true"></i>
     <% else %>
       <i class="fa fa-heart-o" aria-hidden="true"></i>
     <% end %>
   </div>
   <span class="group-hover:text-rose-500 text-gray-500">
-    <%= link_to likeable.likes.size, likes_path(likeable_id: likeable.id, likeable_type: likeable.model_name.name), id: "#{likeable.id}_likes-size" %>
+    <%= link_to tweet.likes.size, like_path(tweet), id: "#{tweet.id}_likes-size" %>
   </span>
 <% end %>

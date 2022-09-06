@@ -10,8 +10,8 @@
     <% end %>
   </li>
   <li>
-    <%= content_tag :div, class: "#{dom_id(tweet)}_likes" do %>
-      <%= render "likes/likes", likeable: tweet %>
+    <%= content_tag :div, class: "#{tweet.id}_likes" do %>
+      <%= render "likes/likes", tweet: tweet %>
     <% end %>
   </li>
   <% if user_signed_in? && current_user == tweet.user %>

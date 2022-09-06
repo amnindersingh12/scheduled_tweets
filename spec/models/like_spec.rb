@@ -18,17 +18,8 @@
 #  tweet_id  (tweet_id => tweets.id)
 #  user_id   (user_id => users.id)
 #
-class Like < ApplicationRecord
-  belongs_to :tweet
-  belongs_to :user
+require 'rails_helper'
 
-  after_create_commit do
-    # binding.pry
-    if tweet.user != Current.user
-      notification_like = Notification.create(recipient: tweet.user, actor: Current.user, action: 'liked',
-                                              notifiable: tweet)
-
-      NotificationJob.perform_later(tweet, tweet.user, notification_like.action)
-    end
-  end
+RSpec.describe Like, type: :model do
+  pending "add some examples to (or delete) #{__FILE__}"
 end

@@ -18,10 +18,21 @@
 #
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
-require "test_helper"
+require 'rails_helper'
 
-class UserTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+RSpec.describe User, type: :model do
+  let(:user) do
+    User.create(email: 'user1@gmail.com', password_digest: '11111111', username: 'user1',
+                first_name: 'user_first')
+  end
+
+  describe '#email' do
+    subject { user.email }
+    # binding.pry
+    context 'when a us5er have an email' do
+      it 'returns the email ' do
+        expect(subject).to eq('user1@gmail.com')
+      end
+    end
+  end
 end

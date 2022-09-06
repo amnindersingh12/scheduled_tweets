@@ -13,7 +13,10 @@ Rails.application.routes.draw do
 
   resources :profiles
 
-  resources :likes
+  post 'like/:id', to: 'tweets#like', as: :like
+  get 'likes', to: 'tweets#like_index', as: :all_users
+
+  # resources :likes
   get "tweets/route", to: 'tweets#route'
   post 'profiles/follow', to: 'profiles#follow'
   delete 'profiles/', to: 'profiles#unfollow'
