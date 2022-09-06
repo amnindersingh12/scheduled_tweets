@@ -7,7 +7,8 @@ class NotificationsController < ApplicationController
   end
 
   def mark_as_read
-    @notifications = Notification.where(recipient: current_user).order(created_at: :desc).unread
+    @notifications = Notification.where(recipient: current_user).order(created_at: :desc)
     @notifications.update_all(read_at: Time.zone.now)
+    Notification.where.not(read_at: nil).delete_all
   end
 end

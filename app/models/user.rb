@@ -26,9 +26,11 @@ class User < ApplicationRecord
 
   has_many :likes
   has_many :liked_tweets, through: :likes, source: :tweet
-
+  # has_many through 
   def like(tweet)
     liked_tweets << tweet
+    binding.pry
+
   end
 
   def unlike(tweet)

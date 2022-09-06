@@ -22,7 +22,7 @@ class Like < ApplicationRecord
   belongs_to :tweet
   belongs_to :user
 
-  after_create_commit do
+  after_save_commit do
     # binding.pry
     if tweet.user != Current.user
       notification_like = Notification.create(recipient: tweet.user, actor: Current.user, action: 'liked',
@@ -30,5 +30,11 @@ class Like < ApplicationRecord
 
       NotificationJob.perform_later(tweet, tweet.user, notification_like.action)
     end
+  end
+
+  after_destroy_commit do
+    Notification.where(action: 'liked')
+                .where(notifiable_id: tweet.id)
+                .where(actor: Current.user).delete_all
   end
 end
