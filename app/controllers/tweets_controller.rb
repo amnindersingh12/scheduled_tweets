@@ -1,8 +1,7 @@
 class TweetsController < ApplicationController
   include ActionView::Helpers::DateHelper
-  include ApplicationHelper
   before_action :authenticate_user!
-  before_action :setup_tweet, only: %i[retweet show reply]
+  before_action :setup_tweet, only: %i[retweet show reply like show_likes visitors]
 
   def create
     @tweet = Current.user.tweets.new(tweet_params)
@@ -50,32 +49,26 @@ class TweetsController < ApplicationController
   def show
     @replies = Tweet.get_replies(params[:id])
     @user = User.find(@tweet.user_id)
-    Visitor.create(tweet_id: @tweet.id, user_id: current_user.id) if Visitor.where(tweet_id: @tweet.id,
-                                                                                   user_id: current_user.id).blank?
+    Visitor.find_or_create_by(tweet_id: @tweet.id, user_id: current_user.id) if current_user.id != @tweet.user.id
   end
 
   def like
-    @tweet = Tweet.find(params[:id])
-
     if current_user.already_liked?(@tweet)
       current_user.unlike(@tweet)
     else
       current_user.like(@tweet)
     end
     respond_to do |format|
-      format.js { render 'likes/like.js' }
+      format.js {  }
     end
   end
 
-  def like_index
-    @tweet = Tweet.find(params[:id])
-    @likes = liked_by_users(@tweet)
+  def show_likes
+    @likes = Tweet.list_likes(@tweet.id)
   end
 
   def visitors
-    @tweet = Tweet.find(params[:id])
-    @visitors_are = tweet_visitors(@tweet)
-    # binding.pry
+    @visitors_are = Tweet.tweet_visitors(@tweet.id)
   end
 
   def tweet_params

@@ -1,14 +1,10 @@
 module ApplicationHelper
 
-  def liked_by_users(tweet)
+  def liked_by(tweet)
     liked_by = []
     tweet.likes.each do |user|
       liked_by << User.find(user.user_id)
     end
-  end
-
-  def tweet_visitors(tweet)
-    @visitors_are = Visitor.where(tweet_id: tweet.id)
   end
 
   def profile_image(user, options = {})

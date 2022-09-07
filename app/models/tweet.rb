@@ -23,8 +23,13 @@ class Tweet < ActiveRecord::Base
   # include Likeable
   belongs_to :user # foreign key - employee_id
   has_many :likes, dependent: :destroy
+
+  def liked_by?(user)
+    likes.where(user:).any?
+  end
+
   has_many :visitors, dependent: :destroy
-  
+
   belongs_to :parent_tweet, class_name: 'Tweet', foreign_key: :parent_tweet_id, optional: true
 
   validates :body, length: { maximum: 240 }, presence: true, unless: :parent_tweet_id
@@ -38,6 +43,9 @@ class Tweet < ActiveRecord::Base
   scope :get_followers, -> { where(user_id: Current.user.followees).order(created_at: :desc) }
   scope :get_replies, ->(id) { where(parent_tweet_id: id).order(created_at: :desc) }
   scope :my_tweets, -> { where(user_id: Current.user).order(created_at: :desc) }
+
+  scope :tweet_visitors, ->(id) { Visitor.where(tweet_id: id) }
+  scope :list_likes, ->(id) { Like.where(tweet_id: id) }
 
   after_create_commit :notification
 
