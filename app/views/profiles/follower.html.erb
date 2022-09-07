@@ -13,7 +13,7 @@
       <div class="mb-6">
         <div class="flex ">
           <div class="pr-2">
-            <%= image_tag x.profile_image, class: " w-14 h-14 rounded-full ring-2 ring-gray-300 dark:ring-gray-500 " %>
+            <%= profile_image x, class: " w-14 h-14 rounded-full ring-2 ring-gray-300 dark:ring-gray-500 " %>
           </div>
           <div class="pl-1 ">
             <p><%= link_to x.first_name, profile_path(x.id) %></p>
@@ -34,7 +34,7 @@
       <div class="mb-6">
         <div class="flex ">
           <div class="pr-2">
-            <%= image_tag x.profile_image, class: " w-14 h-14 rounded-full ring-2 ring-gray-300 dark:ring-gray-500 " %>
+            <%= profile_image x, class: " w-14 h-14 rounded-full ring-2 ring-gray-300 dark:ring-gray-500 " %>
           </div>
           <div class="pl-1 ">
             <p><%= link_to x.first_name, profile_path(x.id) %></p>

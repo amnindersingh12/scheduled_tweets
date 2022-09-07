@@ -1,11 +1,11 @@
- <% # in form u gota use local false instead of remote true %>
+ <%# in form we have to use local false instead of remote true %>
 <%= form_with model: @tweet, local: false, method: :post do |form| %>
-  <%= form.text_area :body, required: "required", class: "w-full resize-none rounded-md focus:shadow-none focus:border-none ring-0 focus:ring-0 focus:outline-none text-lg py-3 px-6 h-full min-h-[200px] ", placeholder: "What's on your mind?" %>
-</div>
-<div class="flex justify-end px-6 -mt-20">
-  <%= form.submit "Tweet", class: "px-6 py-2 bg-sky-400 text-white font-semibold rounded-full text-center cursor-pointer inline-block hover:bg-sky-500 transition ease-in-out duration-300" %>
-</div>
-<div class="justify-start px-6 -mt-10">
-  <%= form.file_field :image, id: "image_f", required: "required", accept:"image/png, image/gif, image/jpeg", class: "block mb-5 w-10px text-xs text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" %>
+  <%= form.text_area :body,  class: "w-full resize-none rounded-md focus:shadow-none focus:border-none ring-0 focus:ring-0 focus:outline-none text-lg py-3 px-6 h-full min-h-[200px] ", placeholder: "What's on your mind?" %>
+  <div class="justify-start mx-10 -mt-10">
+    <%= form.file_field :image, id: "image_f",  accept:"image/png, image/gif, image/jpeg", class: "block mb-5 w-10px text-xs text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" %>
+    <div class="flex justify-end px-6 -mt-20">
+      <%= form.submit "Tweet", class: "px-6 py-2 bg-sky-400 text-white font-semibold rounded-full text-center cursor-pointer inline-block hover:bg-sky-500 transition ease-in-out duration-300" %>
+    </div>
+  </div>
 </div>
 <% end %>

@@ -1,0 +1,4 @@
+<%#= image_tag @content.image %>
+<h1>You got a new notification.</h1>
+<p>From:<%= @content.user.username %> @ <%= @content.created_at.strftime("%b %d") %> </p>
+<p>Link to the <%= link_to Tweet, @content %> </p>

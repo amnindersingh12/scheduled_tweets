@@ -1,13 +1,14 @@
-class NotificationsController<ApplicationController
+class NotificationsController < ApplicationController
   before_action :authenticate_user!
   skip_before_action :verify_authenticity_token
+
   def index
-      @notifications=Notification.where(recipient: current_user).unread
+    @notifications = Notification.where(recipient: current_user).order(created_at: :desc).unread
   end
 
   def mark_as_read
-      @notifications=Notification.where(recipient: current_user).unread
-      @notifications.update_all(read_at: Time.zone.now)
-      render json{:success=> true}
+    @notifications = Notification.where(recipient: current_user).order(created_at: :desc)
+    @notifications.update_all(read_at: Time.zone.now)
+    Notification.where.not(read_at: nil).delete_all
   end
 end

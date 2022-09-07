@@ -1,8 +1,7 @@
 alert("you are going to delete this");
 if (<%= @tweet.tweet_type === "tweet" %>){
-  $('#my_tweet_<%= @tweet.id %>').remove();
+$('#my_tweet_<%= @tweet.id %>').remove();
 }
 else{
-  $('#<%= @tweet.id %>_r').remove();
+$('#<%= @tweet.id %>_r').remove();
 }
-

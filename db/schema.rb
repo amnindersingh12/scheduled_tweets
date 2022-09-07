@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_18_081904) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_07_070811) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -39,16 +39,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_18_081904) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "comments", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "tweet_id", null: false
-    t.text "body", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["tweet_id"], name: "index_comments_on_tweet_id"
-    t.index ["user_id"], name: "index_comments_on_user_id"
-  end
-
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer "priority", default: 0, null: false
     t.integer "attempts", default: 0, null: false
@@ -65,12 +55,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_18_081904) do
   end
 
   create_table "likes", force: :cascade do |t|
-    t.string "likeable_type", null: false
-    t.integer "likeable_id", null: false
+    t.integer "tweet_id", null: false
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["likeable_type", "likeable_id"], name: "index_likes_on_likeable"
+    t.index ["tweet_id"], name: "index_likes_on_tweet_id"
     t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
@@ -99,6 +88,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_18_081904) do
     t.integer "parent_tweet_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "tweet_type", default: "tweet"
     t.index ["user_id"], name: "index_tweets_on_user_id"
   end
 
@@ -116,10 +106,20 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_18_081904) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "visitors", force: :cascade do |t|
+    t.integer "tweet_id", null: false
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tweet_id"], name: "index_visitors_on_tweet_id"
+    t.index ["user_id"], name: "index_visitors_on_user_id"
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "comments", "tweets"
-  add_foreign_key "comments", "users"
+  add_foreign_key "likes", "tweets"
   add_foreign_key "likes", "users"
   add_foreign_key "tweets", "users"
+  add_foreign_key "visitors", "tweets"
+  add_foreign_key "visitors", "users"
 end
