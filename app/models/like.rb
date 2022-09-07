@@ -23,7 +23,6 @@ class Like < ApplicationRecord
   belongs_to :user
 
   after_save_commit do
-    # binding.pry
     if tweet.user != Current.user
       notification_like = Notification.create(recipient: tweet.user, actor: Current.user, action: 'liked',
                                               notifiable: tweet)

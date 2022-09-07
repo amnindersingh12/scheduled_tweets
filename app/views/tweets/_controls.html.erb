@@ -10,9 +10,9 @@
     <% end %>
   </li>
   <li>
-    <%= content_tag :div, class: "#{tweet.id}_likes" do %>
+    <div class=<%= "#{tweet.id}_likes" %> >
       <%= render "likes/likes", tweet: tweet %>
-    <% end %>
+    </div>
   </li>
   <% if user_signed_in? && current_user == tweet.user %>
     <li>
@@ -20,6 +20,16 @@
         <div class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-gray-50">
           <i class="fa fa-trash" aria-hidden="true"></i>
         </div>
+      <% end %>
+    </li>
+    <li>
+      <%= link_to visitor_path(tweet), class: "text-gray-500 space-x-2 group flex items-center justify-center" do %>
+        <div class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-gray-50">
+          <i class="fa fa-users" aria-hidden="true"></i>
+        </div>
+  <span class="group-hover:text-sky-500 text-gray-500">
+          <%= tweet_visitors(tweet).size %>
+        </span>
       <% end %>
     </li>
   <% else %>

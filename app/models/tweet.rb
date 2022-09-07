@@ -23,7 +23,8 @@ class Tweet < ActiveRecord::Base
   # include Likeable
   belongs_to :user # foreign key - employee_id
   has_many :likes, dependent: :destroy
-
+  has_many :visitors, dependent: :destroy
+  
   belongs_to :parent_tweet, class_name: 'Tweet', foreign_key: :parent_tweet_id, optional: true
 
   validates :body, length: { maximum: 240 }, presence: true, unless: :parent_tweet_id
@@ -35,7 +36,6 @@ class Tweet < ActiveRecord::Base
   has_many :replies, -> { where tweet_type: 'reply' }, class_name: 'Tweet', foreign_key: 'parent_tweet_id'
 
   scope :get_followers, -> { where(user_id: Current.user.followees).order(created_at: :desc) }
-  # binding.pry
   scope :get_replies, ->(id) { where(parent_tweet_id: id).order(created_at: :desc) }
   scope :my_tweets, -> { where(user_id: Current.user).order(created_at: :desc) }
 

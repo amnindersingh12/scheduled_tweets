@@ -39,6 +39,7 @@
     </ul>
     <div class="py-2 border-y px-4 justify-center flex">
       <%= render "tweets/controls", tweet: @tweet %>
+      <%# <% binding.pry  %>
     </div>
     <% if user_signed_in? %>
       <%= render "replies/form", tweet: @tweet %>

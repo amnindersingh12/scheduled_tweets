@@ -23,14 +23,13 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :tweets
+  has_many :visitors
 
   has_many :likes
   has_many :liked_tweets, through: :likes, source: :tweet
-  # has_many through 
+
   def like(tweet)
     liked_tweets << tweet
-    binding.pry
-
   end
 
   def unlike(tweet)
@@ -54,7 +53,6 @@ class User < ApplicationRecord
 
   has_many :notifications, foreign_key: :recipient_id
 
-  # binding.pry
 
   # scope :get_followers, -> { where(user_id: Current.user.followees).order(created_at: :desc) }
 end

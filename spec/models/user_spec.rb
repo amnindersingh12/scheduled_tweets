@@ -28,7 +28,6 @@ RSpec.describe User, type: :model do
 
   describe '#email' do
     subject { user.email }
-    # binding.pry
     context 'when a us5er have an email' do
       it 'returns the email ' do
         expect(subject).to eq('user1@gmail.com')

@@ -1,16 +1,13 @@
 class TweetsController < ApplicationController
   include ActionView::Helpers::DateHelper
-
+  include ApplicationHelper
   before_action :authenticate_user!
   before_action :setup_tweet, only: %i[retweet show reply]
 
   def create
     @tweet = Current.user.tweets.new(tweet_params)
     respond_to do |format|
-      if @tweet.save
-        # Notification.create(recipient: @tweet.user, actor: current_user, action: 'tweeted', notifiable: @tweet)
-        format.js {}
-      end
+      format.js {} if @tweet.save
     end
   end
 
@@ -53,6 +50,8 @@ class TweetsController < ApplicationController
   def show
     @replies = Tweet.get_replies(params[:id])
     @user = User.find(@tweet.user_id)
+    Visitor.create(tweet_id: @tweet.id, user_id: current_user.id) if Visitor.where(tweet_id: @tweet.id,
+                                                                                   user_id: current_user.id).blank?
   end
 
   def like
@@ -66,6 +65,17 @@ class TweetsController < ApplicationController
     respond_to do |format|
       format.js { render 'likes/like.js' }
     end
+  end
+
+  def like_index
+    @tweet = Tweet.find(params[:id])
+    @likes = liked_by_users(@tweet)
+  end
+
+  def visitors
+    @tweet = Tweet.find(params[:id])
+    @visitors_are = tweet_visitors(@tweet)
+    # binding.pry
   end
 
   def tweet_params

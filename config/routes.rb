@@ -13,14 +13,18 @@ Rails.application.routes.draw do
 
   resources :profiles
 
+  # likes
   post 'like/:id', to: 'tweets#like', as: :like
-  get 'likes', to: 'tweets#like_index', as: :all_users
+  get 'like/:id', to: 'tweets#like_index'
 
-  # resources :likes
-  get "tweets/route", to: 'tweets#route'
+  # visitor counts
+  get 'visitor/:id', to: 'tweets#visitors', as: :visitor
+
+  # follow unfollow
   post 'profiles/follow', to: 'profiles#follow'
   delete 'profiles/', to: 'profiles#unfollow'
 
+  # list of followers
   get 'profiles/:id/follower', to: 'profiles#follower', as: :follower
 
   resources :notifications do
