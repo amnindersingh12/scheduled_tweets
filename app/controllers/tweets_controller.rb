@@ -59,7 +59,7 @@ class TweetsController < ApplicationController
       current_user.like(@tweet)
     end
     respond_to do |format|
-      format.js {  }
+      format.js {}
     end
   end
 

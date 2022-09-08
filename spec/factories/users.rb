@@ -18,19 +18,11 @@
 #
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
-require 'rails_helper'
-
-RSpec.describe User, type: :model do
-  let(:new_user) { FactoryBot.build(:user) }
-  describe 'validations' do
-    it 'must have email present' do
-      new_user.email = nil
-      expect(new_user).to_not be_valid
-    end
-
-    it 'must have password' do
-      new_user.password = ''
-      expect(new_user).to_not be_valid
-    end
+FactoryBot.define do
+  factory :user do
+    sequence(:first_name) { |x| "test#{x}" }
+    sequence(:username) { |x| "tester#{x}" }
+    sequence(:email) { |x| "test#{x}@gmail.com" }
+    password { '11111111' }
   end
 end
