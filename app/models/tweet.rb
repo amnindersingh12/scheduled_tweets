@@ -28,7 +28,12 @@ class Tweet < ActiveRecord::Base
     likes.where(user:).any?
   end
 
-  has_many :visitors, dependent: :destroy
+  def add_visitor(current_user)
+    Visitor.find_or_create_by(tweet_id: id, user_id: current_user.id)
+  end
+
+  has_many :visitors
+  has_many :tweet_visitors, through: :visitors, source: :user
 
   belongs_to :parent_tweet, class_name: 'Tweet', foreign_key: :parent_tweet_id, optional: true
 
@@ -44,8 +49,8 @@ class Tweet < ActiveRecord::Base
   scope :get_replies, ->(id) { where(parent_tweet_id: id).order(created_at: :desc) }
   scope :my_tweets, -> { where(user_id: Current.user).order(created_at: :desc) }
 
-  scope :tweet_visitors, ->(id) { Visitor.where(tweet_id: id) }
-  scope :list_likes, ->(id) { Like.where(tweet_id: id) }
+  # scope :tweet_visitors, ->(id) { Visitor.where(tweet_id: id) }
+  # scope :list_likes, ->(id) { Like.where(tweet_id: id) }
 
   after_create_commit :notification
 

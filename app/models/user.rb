@@ -22,10 +22,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :tweets
-  has_many :visitors
+  has_many :tweets, dependent: :destroy
 
-  has_many :likes
+  has_many :likes, dependent: :destroy
   has_many :liked_tweets, through: :likes, source: :tweet
 
   def like(tweet)
@@ -53,6 +52,4 @@ class User < ApplicationRecord
 
   has_many :notifications, foreign_key: :recipient_id
 
-
-  # scope :get_followers, -> { where(user_id: Current.user.followees).order(created_at: :desc) }
 end

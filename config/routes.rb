@@ -6,28 +6,20 @@ Rails.application.routes.draw do
   resources :tweets, except: %i[edit update] do
     member do
       post :retweet
-      get  :visitors, as: :visitor
+      get  :visitor, as: :visitor
       post :reply
       post :like
-      get :show_likes
+      get :likes
     end
   end
 
-  resources :profiles
-
-  # likes
-  # post 'like/:id', to: 'tweets#like', as: :like
-  # get 'like/:id', to: 'tweets#like_index'
-
-  # visitor counts
-  # get 'visitor/:id', to: 'tweets#visitors', as: :visitor
-
-  # follow unfollow
-  post 'profiles/follow', to: 'profiles#follow'
-  delete 'profiles/', to: 'profiles#unfollow'
-
-  # list of followers
-  get 'profiles/:id/follower', to: 'profiles#follower', as: :follower
+  resources :profiles do
+    member do
+      post :follow
+      get :follower
+      delete :unfollow
+    end
+  end
 
   resources :notifications do
     collection do

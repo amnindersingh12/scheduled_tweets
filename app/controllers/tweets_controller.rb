@@ -1,7 +1,7 @@
 class TweetsController < ApplicationController
   include ActionView::Helpers::DateHelper
   before_action :authenticate_user!
-  before_action :setup_tweet, only: %i[retweet show reply like show_likes visitors]
+  before_action :setup_tweet, only: %i[retweet show reply like likes visitor]
 
   def create
     @tweet = Current.user.tweets.new(tweet_params)
@@ -49,7 +49,7 @@ class TweetsController < ApplicationController
   def show
     @replies = Tweet.get_replies(params[:id])
     @user = User.find(@tweet.user_id)
-    Visitor.find_or_create_by(tweet_id: @tweet.id, user_id: current_user.id) if current_user.id != @tweet.user.id
+    @tweet.add_visitor(current_user) if current_user.id != @tweet.user.id
   end
 
   def like
@@ -63,12 +63,12 @@ class TweetsController < ApplicationController
     end
   end
 
-  def show_likes
-    @likes = Tweet.list_likes(@tweet.id)
+  def likes
+    @likes = @tweet.likes
   end
 
-  def visitors
-    @visitors_are = Tweet.tweet_visitors(@tweet.id)
+  def visitor
+    @visitors_are = @tweet.tweet_visitors
   end
 
   def tweet_params

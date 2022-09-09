@@ -1,3 +1,3 @@
-$('#f_id').html('<%= button_to "Follow", profiles_follow_path(id: @profile.id), method: :post, class: "inline-flex justify-center items-center px-5 py-2 rounded-full border ring-4 focus:ring-sky-50 ring-transparent hover:ring-sky-50 hover:border-gray-300", remote: true %>')
+$('#f_id').html('<%= button_to "Follow", follow_profile_path(id: @profile.id), method: :post, class: "inline-flex justify-center items-center px-5 py-2 rounded-full border ring-4 focus:ring-sky-50 ring-transparent hover:ring-sky-50 hover:border-gray-300", remote: true %>')
 $('#followees_id').html('<%= @profile.followed_users.count %>')
 $('#followers_id').html('<%= @profile.followers.count %>')

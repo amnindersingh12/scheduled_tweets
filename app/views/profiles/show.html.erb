@@ -16,9 +16,9 @@
     <% elsif current_user %>
       <div id='f_id'>
         <% if following?(@profile) %>
-          <%= button_to "Unfollow", profiles_path(id: @profile.id), method: :delete, class: "inline-flex justify-center items-center px-5 py-2 rounded-full border ring-4 focus:ring-sky-50 ring-transparent hover:ring-sky-50 hover:border-gray-300", remote: true %>
+          <%= button_to "Unfollow", unfollow_profile_path(id: @profile.id), method: :delete, class: "inline-flex justify-center items-center px-5 py-2 rounded-full border ring-4 focus:ring-sky-50 ring-transparent hover:ring-sky-50 hover:border-gray-300", remote: true %>
         <% else %>
-          <%= button_to "Follow", profiles_follow_path(id: @profile.id), method: :post, class: "inline-flex justify-center items-center px-5 py-2 rounded-full border ring-4 focus:ring-sky-50 ring-transparent hover:ring-sky-50 hover:border-gray-300", remote: true %>
+          <%= button_to "Follow", follow_profile_path(id: @profile.id), method: :post, class: "inline-flex justify-center items-center px-5 py-2 rounded-full border ring-4 focus:ring-sky-50 ring-transparent hover:ring-sky-50 hover:border-gray-300", remote: true %>
         <% end %>
       </div>
     <% end %>
@@ -28,11 +28,11 @@
       <span id="followers_id">
         <%= @profile.followers.count %>
       </span>
-      <%= link_to "Follower", follower_url %>
+      <%= link_to "Follower", follower_profile_url %>
       <span id="followees_id">
         <%= @profile.followees.count %>
       </span>
-      <%= link_to "Following", follower_url %>
+      <%= link_to "Following", follower_profile_url %>
     </div>
   </div>
   <ul class="list-none divide-y -mx-6 mt-10">

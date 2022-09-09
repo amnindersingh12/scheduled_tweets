@@ -1,12 +1,4 @@
 module ApplicationHelper
-
-  def liked_by(tweet)
-    liked_by = []
-    tweet.likes.each do |user|
-      liked_by << User.find(user.user_id)
-    end
-  end
-
   def profile_image(user, options = {})
     size = case options[:size]
            when 'large'

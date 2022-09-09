@@ -15,11 +15,12 @@
         <div class="mb-6">
           <div class="flex ">
             <div class="pr-2">
-              <%= profile_image visitor.user, class: " w-14 h-14 rounded-full ring-2 ring-gray-300 dark:ring-gray-500 " %>
+            <%# <% binding.pry %> 
+              <%= profile_image visitor, class: " w-14 h-14 rounded-full ring-2 ring-gray-300 dark:ring-gray-500 " %>
             </div>
             <div class="pl-1 ">
-              <p><%= link_to visitor.user.first_name, profile_path(visitor.user) , class: "text-blue-500 hover:text-blue-800" %></p>
-              <p>@<%= visitor.user.username %></p>
+              <p><%= link_to visitor.first_name, profile_path(visitor) , class: "text-blue-500 hover:text-blue-800" %></p>
+              <p>@<%= visitor.username %></p>
             </div>
           </div>
         </div>
