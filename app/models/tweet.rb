@@ -20,7 +20,6 @@
 #  user_id  (user_id => users.id)
 #
 class Tweet < ActiveRecord::Base
-  # include Likeable
   belongs_to :user # foreign key - employee_id
   has_many :likes, dependent: :destroy
 
@@ -28,12 +27,16 @@ class Tweet < ActiveRecord::Base
     likes.where(user:).any?
   end
 
-  def add_visitor(current_user)
-    Visitor.find_or_create_by(tweet_id: id, user_id: current_user.id)
-  end
-
   has_many :visitors
   has_many :tweet_visitors, through: :visitors, source: :user
+
+  def already_visited(current_user)
+    tweet_visitors.include?(current_user)
+  end
+
+  def add_visitor(current_user)
+    tweet_visitors << current_user if already_visited(current_user) == false
+  end
 
   belongs_to :parent_tweet, class_name: 'Tweet', foreign_key: :parent_tweet_id, optional: true
 
