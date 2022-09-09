@@ -1,3 +1,3 @@
-$('#tweets').prepend("<%= escape_javascript(render partial: "tweets/tweet", locals: { tweet: @tweet }) %>");
+$('#tweets').prepend("<%= j render partial: "tweets/tweet", locals: { tweet: @tweet } %>");
 $('#tweet_body').val('');
 $('#image_f').val('');

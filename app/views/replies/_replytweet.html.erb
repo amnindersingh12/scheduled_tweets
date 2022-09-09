@@ -15,7 +15,7 @@
     </p>
     <ul class="-ml-3 flex space-x-14 items-start justify-start list-none">
       <li>
-        <%= render "likes/likes", tweet: reply %>
+        <%= render "likes/like", tweet: reply %>
       </li>
       <% if user_signed_in? && current_user == reply.user %>
         <li>

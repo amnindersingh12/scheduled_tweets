@@ -1,1 +1,1 @@
-$('#tweets').prepend("<%= escape_javascript(render partial: 'tweets/retweet', locals: { tweet: @retweet }) %>");
+$('#tweets').prepend("<%= j render partial: 'tweets/retweet', locals: { tweet: @retweet } %>");
