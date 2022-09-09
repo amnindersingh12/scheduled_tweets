@@ -24,6 +24,7 @@ class Tweet < ActiveRecord::Base
   has_many :likes, dependent: :destroy
 
   def liked_by?(user)
+    # binding.pry
     likes.where(user:).any?
   end
 
@@ -31,9 +32,9 @@ class Tweet < ActiveRecord::Base
   has_many :tweet_visitors, through: :visitors, source: :user
 
   def add_visitor(current_user)
-    visitors.find_or_create_by(tweet_id: id, user_id: current_user.id)
+    visitors.find_or_create_by(user_id: current_user.id)
   end
-  
+
   # another way of doing the same
 
   # def already_visited(current_user)

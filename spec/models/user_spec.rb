@@ -28,9 +28,9 @@ RSpec.describe User, type: :model do
       expect(new_user).to_not be_valid
     end
 
-    it 'must have password' do
-      new_user.password = ''
-      expect(new_user).to_not be_valid
+    it 'must have password of length 6' do
+      new_user.password = '11111111'
+      expect(new_user.password.size).to be >= 6
     end
   end
 end
