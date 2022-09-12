@@ -4,7 +4,6 @@
 #
 #  id              :integer          not null, primary key
 #  body            :text
-#  publish_at      :datetime
 #  tweet_type      :string           default("tweet")
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null

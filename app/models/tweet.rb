@@ -4,7 +4,6 @@
 #
 #  id              :integer          not null, primary key
 #  body            :text
-#  publish_at      :datetime
 #  tweet_type      :string           default("tweet")
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
@@ -47,13 +46,14 @@ class Tweet < ActiveRecord::Base
 
   belongs_to :parent_tweet, class_name: 'Tweet', foreign_key: :parent_tweet_id, optional: true
 
-  validates :body, length: { maximum: 240 }, presence: true, unless: :parent_tweet_id
-
+  validates :body, length: { maximum: 240 }, presence: true
   has_one_attached :image
 
   has_many :retweets, -> { where tweet_type: 'retweet' }, class_name: 'Tweet', foreign_key: 'parent_tweet_id'
 
   has_many :replies, -> { where tweet_type: 'reply' }, class_name: 'Tweet', foreign_key: 'parent_tweet_id'
+
+  has_many :quotes, -> { where tweet_type: 'quote' }, class_name: 'Tweet', foreign_key: 'parent_tweet_id'
 
   scope :get_followers, -> { where(user_id: Current.user.followees).order(created_at: :desc) }
   scope :get_replies, ->(id) { where(parent_tweet_id: id).order(created_at: :desc) }
