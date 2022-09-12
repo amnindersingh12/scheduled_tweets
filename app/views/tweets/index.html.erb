@@ -1,6 +1,6 @@
 <div class="mb-8">
   <%= render "form" %>
-  <div class="flex flex-wrap", id="tweets">
+  <div  id="tweets">
     <% @tweets.each do |t| %>
       <%= render partial: "tweets/#{t.tweet_type}", locals: { tweet: t } %>
     <% end %>

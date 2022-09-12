@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <%= render "shared/head" %>
-  <body class="font-sans font-normal leading-normal text-gray-800 bg-white flex flex-col min-h-screen ">
+  <body class="font-sans font-normal leading-normal text-black bg-white flex flex-col min-h-screen ">
     <header>
       <%= render partial: "shared/flash" %>
     </header>
@@ -57,10 +57,10 @@
             <% end %>
           </ul>
         </div>
-        <div class="lg:col-span-6 border-x">
+        <div class="lg:col-span-6 border-x-2 border-black">
           <%= yield %>
         </div>
-        <div class="lg:col-span-4 pl-6 pt-6">
+        <div class="lg:col-span-4 pl-6 pt-6 ">
           <div class="bg-gray-50 w-full min-h-[150px] rounded-lg p-6 mb-6">Sidebar stuff </div>
           <% if user_signed_in? %>
             <p class="mb-4">

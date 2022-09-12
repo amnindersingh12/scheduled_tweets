@@ -1,4 +1,4 @@
-<div class="px-6 py-3 border-b", id="<%= tweet.id %>_r">
+<div class="px-6 py-3 border-b-2 border-black", id="<%= tweet.id %>_r">
   <div class="flex items-center mb-3 space-x-2", id="<%= tweet.id %>_rr">
     <i class="fa fa-retweet"></i>
     <p class="text-sm font-medium">Retweeted by @<%= link_to  tweet.user.username, profile_path(tweet.user), class: "hover:underline" %></p>

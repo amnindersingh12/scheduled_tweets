@@ -6,9 +6,9 @@ Rails.application.routes.draw do
   resources :tweets, except: %i[edit] do
     member do
       post :retweet
-      post :quote, as: :qt
-      get :quote
-      get  :visitor, as: :visitor
+      post :quote
+      get  :new_quote
+      get  :visitor
       post :reply
       post :like
       get :likes

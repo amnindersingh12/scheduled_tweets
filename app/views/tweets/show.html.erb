@@ -29,7 +29,7 @@
       <% end %>
     </p>
   </div>
-  <ul class="py-3 border-t text-gray-700 flex space-x-4 text-sm">
+  <ul class="py-3 border-t-2 border-black text-gray-700 flex space-x-4 text-sm">
     <li>
       <span class="font-semibold text-gray-800"><%= @replies.size %> replies
       </li>
@@ -37,7 +37,7 @@
         <span class="font-semibold text-gray-800"><%= @tweet.likes.size %></span> Likes
       </li>
     </ul>
-    <div class="py-2 border-y px-4 justify-center flex">
+    <div class="py-2 border-y-2 border-black px-4 justify-center flex">
       <%= render "tweets/controls", tweet: @tweet %>
       <%# <% binding.pry  %>
     </div>

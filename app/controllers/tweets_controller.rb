@@ -43,10 +43,10 @@ class TweetsController < ApplicationController
 
   def quote
     @quote = current_user.tweets.new(parent_tweet_id: @tweet.id, tweet_type: :quote, body: params[:body],
-                                        image: params[:image])
+                                     image: params[:image])
     @quote.save
     respond_to do |format|
-format.html{}
+      format.html {}
       format.js {}
     end
   end

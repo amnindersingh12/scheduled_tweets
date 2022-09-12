@@ -1,5 +1,5 @@
-<div class="px-6  border-b",id= "<%= tweet.id %>_quote", >
-  <p class="text-sm font-medium">Quotted by @<%= link_to  tweet.user.username, profile_path(tweet.user), class: "hover:underline" %></p>
+<div class="px-6 border-b-2 border-black",id= "<%= tweet.id %>_quote", >
+  <p class="mt-3 text-sm font-medium">Quotted by @<%= link_to  tweet.user.username, profile_path(tweet.user), class: "hover:underline" %></p>
   <div class="flex space-x-3 items-start">
     <div>
       <%= profile_image(tweet.user) %>
@@ -15,8 +15,8 @@
       </p>
     </div>
   </div>
-  <div class="px-6 py-3 border-b">
-    <div class="flex space-x-3 items-start">
+  <div class="px-6 py-3">
+    <div class="flex space-x-3 px-4 py-2 items-start border-solid border-black border-2 rounded-lg">
       <div>
         <%= profile_image(tweet.parent_tweet.user) %>
       </div>

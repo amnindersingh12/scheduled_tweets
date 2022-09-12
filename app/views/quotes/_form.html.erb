@@ -1,6 +1,6 @@
 <%= form_with model: @tweets, url: { action: "quote",controller: "tweets" }, method: :post,local: false do |form| %>
-  <h1>Quote here</h1>
-  <div class="flex items-start justify-between space-x-3 py-6 border-b" >
+  <h1 class="ml-4" >Quote here</h1>
+  <div class="ml-4 mr-5 flex items-start justify-between space-x-3 py-6 border-b" >
     <%= profile_image(current_user) %>
     <div class="flex-1">
       <%= form.text_area :body,id: "reply_body",  class: "px-6 w-full resize-none rounded-md focus:shadow-none focus:border-none ring-0 focus:ring-0 focus:outline-none text-lg py-3 h-full min-h-[100px]", placeholder: "Tweet your reply" %>
