@@ -1,7 +1,7 @@
 class TweetsController < ApplicationController
   include ActionView::Helpers::DateHelper
   before_action :authenticate_user!
-  before_action :setup_tweet, only: %i[retweet show reply like likes visitor]
+  before_action :setup_tweet, only: %i[retweet show reply like likes visitor quote]
 
   def create
     @tweet = Current.user.tweets.new(tweet_params)
@@ -34,11 +34,20 @@ class TweetsController < ApplicationController
   end
 
   def retweet
-    @retweet = current_user.tweets.new(parent_tweet_id: @tweet.id, tweet_type: :retweet)
-    @retweet.body = @tweet.body.to_s
-    @retweet.image = @tweet.image.blob
+    @retweet = current_user.tweets.new(parent_tweet_id: @tweet.id, tweet_type: :retweet, body: @tweet.body.to_s,
+                                       image: @tweet.image.blob)
     respond_to do |format|
       format.js {} if @retweet.save
+    end
+  end
+
+  def quote
+    @quote = current_user.tweets.new(parent_tweet_id: @tweet.id, tweet_type: :quote, body: params[:body],
+                                        image: params[:image])
+    @quote.save
+    respond_to do |format|
+format.html{}
+      format.js {}
     end
   end
 

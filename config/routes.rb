@@ -3,9 +3,11 @@ Rails.application.routes.draw do
 
   root to: 'tweets#index'
 
-  resources :tweets, except: %i[edit update] do
+  resources :tweets, except: %i[edit] do
     member do
       post :retweet
+      post :quote, as: :qt
+      get :quote
       get  :visitor, as: :visitor
       post :reply
       post :like

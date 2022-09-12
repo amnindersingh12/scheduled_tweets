@@ -1,0 +1,35 @@
+<div class="px-6  border-b",id= "<%= tweet.id %>_quote", >
+  <p class="text-sm font-medium">Quotted by @<%= link_to  tweet.user.username, profile_path(tweet.user), class: "hover:underline" %></p>
+  <div class="flex space-x-3 items-start">
+    <div>
+      <%= profile_image(tweet.user) %>
+    </div>
+    <div class="flex-1">
+      <p class="font-bold">
+        <%= link_to tweet.user.first_name, profile_path(tweet.user), class: "hover:underline" %>.
+        <%# <%= time_ago_in_words(tweet.created_at) %>
+      </p>
+      <p>
+        <%= tweet.body %>
+        <%= image_tag tweet.image unless tweet.image.blank? %>
+      </p>
+    </div>
+  </div>
+  <div class="px-6 py-3 border-b">
+    <div class="flex space-x-3 items-start">
+      <div>
+        <%= profile_image(tweet.parent_tweet.user) %>
+      </div>
+      <div class="flex-1">
+        <p class="font-bold">
+          <%= link_to tweet.parent_tweet.user.first_name, profile_path(tweet.parent_tweet.user), class: "hover:underline" %>
+        </p>
+        <p>
+          <%= tweet.parent_tweet.body %>
+          <%= image_tag tweet.parent_tweet.image unless tweet.parent_tweet.image.blank? %>
+        </p>
+        <%= render "tweets/controls", tweet: tweet %>
+      </div>
+    </div>
+  </div>
+</div>
