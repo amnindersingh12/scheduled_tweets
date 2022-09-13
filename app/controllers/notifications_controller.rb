@@ -3,12 +3,6 @@ class NotificationsController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def index
-    @notifications = Notification.where(recipient: current_user).order(created_at: :desc).unread
-  end
-
-  def mark_as_read
-    @notifications = Notification.where(recipient: current_user).order(created_at: :desc)
-    @notifications.update_all(read_at: Time.zone.now)
-    Notification.where.not(read_at: nil).delete_all
+    @notifications = Notification.find_recipient(current_user).unread
   end
 end

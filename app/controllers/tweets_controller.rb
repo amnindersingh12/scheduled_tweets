@@ -37,15 +37,10 @@ class TweetsController < ApplicationController
     @retweet = current_user.tweets.new(parent_tweet_id: @tweet.id, tweet_type: :retweet, body: @tweet.body.to_s,
                                        image: @tweet.image.blob)
 
-
-                                # @retweet.body =  @tweet.body.to_s
     respond_to do |format|
       format.js {} if @retweet.save
     end
   end
-
-  def new_quote
- end
 
   def quote
     @quote = current_user.tweets.new(parent_tweet_id: @tweet.id, tweet_type: :quote, body: params[:body],

@@ -16,5 +16,6 @@ class Notification < ApplicationRecord
   belongs_to :actor, class_name: 'User'
   belongs_to :recipient, class_name: 'User'
   belongs_to :notifiable, polymorphic: true
+  scope :find_recipient, ->(current_user) { where(recipient: current_user).order(created_at: :desc) }
   scope :unread, -> { where(read_at: nil) }
 end

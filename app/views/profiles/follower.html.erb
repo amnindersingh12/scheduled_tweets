@@ -18,7 +18,7 @@
           <div class="pl-1 ">
             <p><%= link_to x.first_name, profile_path(x.id) %></p>
             <p>@<%= x.username %></p>
-            <% if following?(x) %>
+            <% if current_user.following?(x) %>
               <%= button_to "Unfollow", unfollow_profile_path(id: x.id), method: :delete, class: "inline-flex justify-center items-center px-5 py-2 rounded-full border ring-4 focus:ring-sky-50 ring-transparent hover:ring-sky-50 hover:border-gray-300" %>
             <% else %>
               <%= button_to "Follow", follow_profile_path(id: x.id), method: :post, class: "inline-flex justify-center items-center px-5 py-2 rounded-full border ring-4 focus:ring-sky-50 ring-transparent hover:ring-sky-50 hover:border-gray-300" %>

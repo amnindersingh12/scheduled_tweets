@@ -15,7 +15,7 @@
       </div>
     <% elsif current_user %>
       <div id='f_id'>
-        <% if following?(@profile) %>
+        <% if current_user.following?(@profile) %>
           <%= button_to "Unfollow", unfollow_profile_path(id: @profile.id), method: :delete, class: "inline-flex justify-center items-center px-5 py-2 rounded-full border ring-4 focus:ring-sky-50 ring-transparent hover:ring-sky-50 hover:border-gray-300", remote: true %>
         <% else %>
           <%= button_to "Follow", follow_profile_path(id: @profile.id), method: :post, class: "inline-flex justify-center items-center px-5 py-2 rounded-full border ring-4 focus:ring-sky-50 ring-transparent hover:ring-sky-50 hover:border-gray-300", remote: true %>
