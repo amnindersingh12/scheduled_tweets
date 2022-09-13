@@ -1,4 +1,4 @@
-<%= form_with model: @tweets, url: { action: "quote",controller: "tweets" }, method: :post,local: false do |form| %>
+<%= form_with  url: quote_tweet_path, method: :post do |form| %>
   <h1 class="ml-4" >Quote here</h1>
   <div class="ml-4 mr-5 flex items-start justify-between space-x-3 py-6 border-b" >
     <%= profile_image(current_user) %>

@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root to: 'tweets#index'
 
   resources :tweets, except: %i[edit] do
+    # binding.pry
     member do
       post :retweet
       post :quote
@@ -13,6 +14,7 @@ Rails.application.routes.draw do
       post :like
       get :likes
     end
+
   end
 
   resources :profiles do
@@ -24,8 +26,4 @@ Rails.application.routes.draw do
   end
 
   resources :notifications
-  #   collection do
-  #     post :mark_as_read
-  #   end
-  # end
 end

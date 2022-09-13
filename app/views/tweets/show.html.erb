@@ -47,7 +47,7 @@
       <p class="mt-6 text-center text-lg"><%= link_to "Sign in", new_user_session_path, class: "text-sky-500 hover:text-sky-600 font-medium" %></p>
     <% end %>
     <% @replies.each do |c| %>
-      <% if c.body? %>
+      <% if c.tweet_type == 'reply' %>
         <%= render "tweets/tweet", tweet: c %>
       <% end %>
     <% end %>

@@ -23,7 +23,6 @@ class Tweet < ActiveRecord::Base
   has_many :likes, dependent: :destroy
 
   def liked_by?(user)
-    # binding.pry
     likes.where(user:).any?
   end
 
@@ -34,15 +33,7 @@ class Tweet < ActiveRecord::Base
     visitors.find_or_create_by(user_id: current_user.id)
   end
 
-  # another way of doing the same
 
-  # def already_visited(current_user)
-  #   tweet_visitors.include?(current_user)
-  # end
-
-  # def add_visitor(current_user)
-  #   tweet_visitors << current_user if already_visited(current_user) == false
-  # end
 
   belongs_to :parent_tweet, class_name: 'Tweet', foreign_key: :parent_tweet_id, optional: true
 

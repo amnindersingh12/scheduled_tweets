@@ -44,7 +44,9 @@
       <% end %>
     </li>
     <li>
-      <%= link_to new_quote_tweet_path(tweet),  class: "text-gray-500 space-x-2 group flex items-center justify-center" do %>
+    <%# binding.pry %>
+    <%# tweets/id/new_quote %>
+      <%= link_to new_quote_tweet_path(tweet.id),  class: "text-gray-500 space-x-2 group flex items-center justify-center" do %>
         <div class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-green-50">
           <i class="fa fa-quote-left"></i>
         </div>
